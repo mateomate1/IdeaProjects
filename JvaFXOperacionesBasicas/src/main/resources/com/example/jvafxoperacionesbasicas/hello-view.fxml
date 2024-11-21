@@ -18,7 +18,7 @@
       <Label layoutX="59.0" layoutY="249.0" text="Resultado" />
       <TextField fx:id="operando1" layoutX="126.0" layoutY="42.0" />
       <TextField fx:id="operando2" layoutX="126.0" layoutY="70.0" />
-      <TextField fx:id="resultado" layoutX="126.0" layoutY="245.0" />
+      <TextField fx:id="resultado" editable="false" layoutX="126.0" layoutY="245.0" />
       <Pane fx:id="containerOperation" layoutX="126.0" layoutY="149.0" prefHeight="78.0" prefWidth="206.0">
          <children>
             <GridPane>
@@ -34,7 +34,8 @@
                   <RadioButton fx:id="RadioButtonSuma" mnemonicParsing="false" text="Suma">
                      <toggleGroup>
                         <ToggleGroup fx:id="operaciones" />
-                     </toggleGroup></RadioButton>
+                     </toggleGroup>
+                  </RadioButton>
                   <RadioButton fx:id="RadioButtonResta" mnemonicParsing="false" text="Resta" toggleGroup="$operaciones" GridPane.rowIndex="1" />
                   <RadioButton fx:id="RadioButtonDivision" mnemonicParsing="false" text="Division" toggleGroup="$operaciones" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <RadioButton fx:id="RadioButtonMultiplicacion" mnemonicParsing="false" text="Multiplicacion" toggleGroup="$operaciones" GridPane.columnIndex="1" />
