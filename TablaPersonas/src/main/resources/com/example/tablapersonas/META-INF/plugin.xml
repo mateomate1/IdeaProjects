@@ -1,0 +1,139 @@
+<idea-plugin>
+    <id>org.jf.fusionIdea</id>
+    <name>Fusion 360 Scripting</name>
+    <version>0.6.1</version>
+    <vendor email="jesusfreke@jesusfreke.com" url="https://github.com/JesusFreke/fusionIdea">Ben Gruver</vendor>
+    <description>
+        <![CDATA[
+<h3>About</h3>
+
+<p>This is a plugin for IntelliJ IDEA/PyCharm that facilitates developing Fusion 360 scripts. It supports launching and
+debugging scripts in Fusion 360, directly from within IDEA/PyCharm.</p>
+
+<br>
+
+<p>This plugin now supports both Windows and Mac.</p>
+
+<br>
+
+<hr />
+<b>New in v0.6.0 - A Fusion 360 add-in is now required (again) to run/debug scripts. See
+<a href="https://github.com/JesusFreke/fusion_idea_addin/wiki/Installing-the-add-in-in-Fusion-360">here</a> for more
+information.</b>
+<hr />
+
+<h3>Usage</h3>
+
+See <a href="https://github.com/JesusFreke/fusionIdea/wiki/Getting-started-with-PyCharm-(Windows)">here</a> for a
+step-by-step "Getting Started" guide for PyCharm.
+
+<h4>IDEA</h4>
+
+<p>You enable Fusion 360 support in IDEA by adding the Fusion 360 facet to a module.
+See, e.g. Open Module Settings -> Facets. Once you add the facet, take a look at its configuration options
+and ensure the path to the Fusion 360 executable is set correctly.</p>
+
+<h4>PyCharm</h4>
+
+<p>You enable Fusion 360 support for a project in PyCharm in Settings->Languages &amp; Frameworks->Fusion 360.
+Enable the "Fusion 360 Support Enabled" checkbox, ensure the path to the Fusion 360 executable is set correctly,
+and then press "Apply".</p>
+
+<hr />
+<br>
+
+<p>Once support has been enabled, you can write a Fusion 360 script as per usual. Once you are ready to
+run it, you can create a new "Fusion 360 Python Script" run configuration, and then run or debug it
+as you would expect.</p>
+
+<br>
+
+<p>As a convenient shortcut, you can right click on the script in the project browser on the left, or
+directly in the editor pane and choose "Run in Fusion 360" or "Debug in Fusion 360" </p>
+
+<h3>Features</h3>
+
+<ul>
+<li>Run script in Fusion 360
+<ul>
+<li>Launches a script in Fusion 360, as if you had run it from the AddIn window</li>
+</ul></li>
+<li>Debug script in Fusion 360
+<ul>
+<li>Launches a script in Fusion 360 and attached a debugger, letting you stop at breakpoints, and all the usual
+debuggery goodness.</li>
+<li>Redirects stdout and stderr to the debugging console.</li>
+</ul></li>
+<li>Attach to Process
+<ul>
+<li>Attaches to a Fusion 360 process without running a script. Any breakpoints will be hit if Fusion happens to run
+the breakpointed code. e.g. If you start the script manually in Fusion 360 itself.</li>
+</ul></li>
+<li>Fusion 360 Python SDK
+<ul>
+<li>Adds a new "Fusion 360 Python SDK" type, to simplify creation of a Python SDK pointing to copy of Python that is
+bundled with Fusion.</li>
+</ul></li>
+<li>Automatically adds a dependency for the Fusion Python APIs to the module, for autocomplete, contextual docs,
+etc.</li>
+</ul>]]>
+
+    </description>
+
+    <idea-version since-build="193.2252"/>
+
+    <depends optional="true" config-file="intellij.xml">com.intellij.modules.java</depends>
+    <depends optional="true" config-file="pycharm.xml">com.intellij.modules.python</depends>
+
+    <change-notes>
+        <![CDATA[
+        <a href="https://github.com/JesusFreke/fusionIdea/tree/v0.6.2"><b>v0.6.2</b></a> (2020-06-07) <br/>
+        <a href="https://github.com/JesusFreke/fusionIdea/compare/v0.6.1...v0.6.2"><small>v0.6.2 Changelog</small></a> <br/>
+        <ul>
+            <li>Fixed an NPE when attaching to the Fusion process</li>
+        </ul>
+        <a href="https://github.com/JesusFreke/fusionIdea/tree/v0.6.1"><b>v0.6.1</b></a> (2020-04-11) <br/>
+        <a href="https://github.com/JesusFreke/fusionIdea/compare/v0.6.0...v0.6.1"><small>v0.6.1 Changelog</small></a> <br/>
+        <ul>
+            <li>Fixed an issue when adding a new configuration in the Run Configuration dialog in 2020.1</li>
+            <li>Added a check for the add-in version, with a message in the debug console when a new version is available.</li>
+        </ul>
+        <a href="https://github.com/JesusFreke/fusionIdea/compare/v0.5.7...v0.6.0"><small>v0.6.0 Changelog</small></a> <br/>
+        <ul>
+            <li>Added support for Mac</li>
+            <li>An add-in is now required (again) in Fusion 360. See
+            <a href="https://github.com/JesusFreke/fusion_idea_addin/wiki/Installing-the-add-in-in-Fusion-360">here</a>
+            for more information.</li>
+            <li>Added a new Fusion 360-specific Python SDK type to simplify setting up a Python SDK that points the
+            version of Python that is bundled with Fusion 360</li>
+            <li>Added a workaround for a buggy version of pydevd that is bundled with current versions of
+            IDEA/PyCharm</li>
+            <li>The plugin now requires IDEA/PyCharm 2019.3+</li>
+        </ul>]]>
+
+    </change-notes>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <xdebugger.localAttachDebuggerProvider implementation="org.jf.fusionIdea.attach.FusionLocalAttachDebuggerProvider"/>
+        <configurationType implementation="org.jf.fusionIdea.run.FusionRunConfigurationType"/>
+        <programRunner implementation="org.jf.fusionIdea.run.FusionDebugRunner" order="first"/>
+        <programRunner implementation="org.jf.fusionIdea.run.FusionRunner" order="first"/>
+        <runConfigurationProducer implementation="org.jf.fusionIdea.run.FusionRunConfigurationProducer"/>
+        <facetType implementation="org.jf.fusionIdea.facet.FusionFacetType"/>
+        <framework.type implementation="org.jf.fusionIdea.framework.FusionFramework"/>
+        <executor implementation="org.jf.fusionIdea.executor.FusionRunExecutor" />
+        <executor implementation="org.jf.fusionIdea.executor.FusionDebugExecutor" />
+        <executionTargetProvider implementation="org.jf.fusionIdea.run.FusionExecutionTargetProvider" />
+
+        <localInspection language="Python" shortName="FusionExecutableInspection" suppressId="FusionExecutable"
+                         displayName="Invalid Fusion 360 path selected"
+                         enabledByDefault="true"  level="WARNING"
+                         implementationClass="org.jf.fusionIdea.inspection.FusionExecutableInspection"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="Pythonid">
+        <pyAddSdkProvider implementation="org.jf.fusionIdea.sdk.AddFusionSdkProvider" />
+        <pythonFlavorProvider implementation="org.jf.fusionIdea.sdk.FusionPythonSdkFlavor$Provider"/>
+    </extensions>
+
+</idea-plugin>
