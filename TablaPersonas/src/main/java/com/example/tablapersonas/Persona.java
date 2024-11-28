@@ -1,8 +1,10 @@
 package com.example.tablapersonas;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Persona {
+public class Persona implements Serializable {
+
 
     private String nombre, apellidos;
     private int edad;

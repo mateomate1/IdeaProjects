@@ -7,17 +7,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tablapersonas.HelloController">
    <children>
       <Label layoutX="23.0" layoutY="28.0" text="Nombre" />
       <Label layoutX="23.0" layoutY="109.0" text="Apellidos" />
       <Label layoutX="23.0" layoutY="194.0" text="Edad" />
-      <Button fx:id="btnAgregar" layoutX="26.0" layoutY="318.0" mnemonicParsing="false" onAction="#addPersona" prefHeight="25.0" prefWidth="143.0" text="Button" />
+      <Button fx:id="btnAgregar" layoutX="26.0" layoutY="269.0" mnemonicParsing="false" onAction="#addPersona" prefHeight="25.0" prefWidth="143.0" text="Agregar" />
+      <Button fx:id="btnEliminar" layoutX="26.0" layoutY="342.0" mnemonicParsing="false" onAction="#eliminar" prefHeight="25.0" prefWidth="143.0" text="Eliminar" />
+      <Button fx:id="btnModificar" layoutX="26.0" layoutY="306.0" mnemonicParsing="false" onAction="#modificar" prefHeight="25.0" prefWidth="143.0" text="Modificar" />
       <TextField fx:id="inNombre" layoutX="23.0" layoutY="56.0" />
       <TextField fx:id="inApellidos" layoutX="23.0" layoutY="145.0" />
       <TextField fx:id="inEdad" layoutX="23.0" layoutY="219.0" />
-      <TableView fx:id="tabla" layoutX="200.0" layoutY="58.0" prefHeight="284.0" prefWidth="354.0">
+      <TableView fx:id="tblPersonas" layoutX="200.0" layoutY="58.0" onMouseClicked="#seleccionar" prefHeight="284.0" prefWidth="354.0">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="118.0" text="Nombre" />
           <TableColumn fx:id="colApellidos" prefWidth="118.0" text="Apellidos" />
