@@ -70,7 +70,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.dam.di.calculadora.calculadora/com.dam.di.calculadora.calculadora.CalculadoraApplication
+                                com.dam.di.calculadora.calculadora/com.dam.di.calculadora.calculadora.Launcher
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

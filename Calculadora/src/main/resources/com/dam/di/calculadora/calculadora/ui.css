@@ -1,0 +1,78 @@
+VBox {
+    -fx-background-color: #2b2b2b;
+    -fx-padding: 10;
+    -fx-spacing: 10;
+}
+
+#textFieldOutput {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #3e3e3e;
+    -fx-border-color: #555555;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+Button {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #4a4a4a;
+    -fx-border-color: #666666;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-pref-height: 50px;
+    -fx-pref-width: 50px;
+}
+
+Button:hover {
+    -fx-background-color: #5a5a5a;
+    -fx-cursor: hand;
+}
+
+Button:pressed {
+    -fx-background-color: #3a3a3a;
+    -fx-border-color: #999999;
+}
+
+#btnSuma, #btnResta, #btnMultiplicacion, #btnDivision, #btnPorcentaje {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+}
+
+#btnSuma:hover, #btnResta:hover, #btnMultiplicacion:hover, #btnDivision:hover, #btnPorcentaje:hover {
+    -fx-background-color: #5a9be2;
+}
+
+#btnSuma:pressed, #btnResta:pressed, #btnMultiplicacion:pressed, #btnDivision:pressed, #btnPorcentaje:pressed {
+    -fx-background-color: #4a79c2;
+}
+
+#btnAC, #btnC, #btnIgual {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+}
+
+#btnAC:hover, #btnC:hover, #btnIgual:hover {
+    -fx-background-color: #ff6659;
+}
+
+#btnAC:pressed, #btnC:pressed, #btnIgual:pressed {
+    -fx-background-color: #d32f2f;
+}
+
+#btn0, #btn1, #btn2, #btn3, #btn4, #btn5, #btn6, #btn7, #btn8, #btn9, #btnPunto, #btne {
+    -fx-background-color: #3e3e3e;
+    -fx-text-fill: white;
+}
+
+#btn0:hover, #btn1:hover, #btn2:hover, #btn3:hover, #btn4:hover, #btn5:hover, #btn6:hover, #btn7:hover, #btn8:hover, #btn9:hover, #btnPunto:hover, #btne:hover {
+    -fx-background-color: #555555;
+}
+
+#btn0:pressed, #btn1:pressed, #btn2:pressed, #btn3:pressed, #btn4:pressed, #btn5:pressed, #btn6:pressed, #btn7:pressed, #btn8:pressed, #btn9:pressed, #btnPunto:pressed, #btne:pressed {
+    -fx-background-color: #444444;
+}

@@ -4,6 +4,7 @@ module com.dam.di.calculadora.calculadora {
 
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
+    requires java.scripting;
 
     opens com.dam.di.calculadora.calculadora to javafx.fxml;
     exports com.dam.di.calculadora.calculadora;
