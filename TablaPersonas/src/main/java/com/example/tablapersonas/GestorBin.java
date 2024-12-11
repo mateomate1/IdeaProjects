@@ -1,40 +1,42 @@
 package com.example.tablapersonas;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorBin {
-    // Añadimos un metodo para verificar o crear el archivo
-    private static void verificarOCrearArchivo(String rutaArchivo) {
-        File archivo = new File(rutaArchivo);
-        try {
-            if (!archivo.exists()) {
-                archivo.createNewFile(); // Crear un archivo vacío si no existe
-                System.out.println("Archivo creado: " + rutaArchivo);
+public class GestorBin <T>{
+    private static final Logger log = LoggerFactory.getLogger(GestorBin.class);
+
+    private String rutaArchivo;
+    private File archivo;
+
+    public GestorBin (String rutaArchivo){
+        this.rutaArchivo = rutaArchivo;
+        archivo = new File(rutaArchivo);
+        if(!archivo.exists()) {
+            log.debug("El archivo no existe");
+            try {
+                log.debug("Creando archivo");
+                archivo.createNewFile();
+                log.debug("Archivo creado con exito");
+            } catch (IOException e) {
+                log.error("Error creando el archivo");
             }
-        } catch (IOException e) {
-            System.err.println("Error al crear el archivo: " + e.getMessage());
         }
     }
 
-    public static void add(String rutaArchivo, Persona user) {
-        verificarOCrearArchivo(rutaArchivo); // Verificar y crear el archivo si no existe
-        List<Persona> users = leer(rutaArchivo);
-        users.add(user);
-        escribir(rutaArchivo, users);
-    }
-
-    public static List<Persona> leer(String rutaArchivo) {
-        verificarOCrearArchivo(rutaArchivo); // Verificar y crear el archivo si no existe
-        List<Persona> users = new ArrayList<>();
+    public List<T> leer(String rutaArchivo) {
+        List<T> datos = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(rutaArchivo);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             try {
                 while (true) {
-                    Persona user = (Persona) ois.readObject();
-                    users.add(user);
+                    T data = (T) ois.readObject();
+                    datos.add(data);
                 }
             } catch (EOFException e) {
                 // Fin del archivo alcanzado
@@ -47,42 +49,12 @@ public class GestorBin {
             System.err.println("Error al leer el archivo: " + e.getMessage());
         }
 
-        return users;
+        return datos;
     }
 
-    public static void escribir(String rutaArchivo, List<Persona> users) {
-        verificarOCrearArchivo(rutaArchivo); // Verificar y crear el archivo si no existe
-        try (FileOutputStream fos = new FileOutputStream(rutaArchivo);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            for (Persona user : users) {
-                oos.writeObject(user);
-            }
-            System.out.println("Personas escritas en el archivo correctamente.");
-        } catch (IOException e) {
-            System.err.println("Error al escribir en el archivo: " + e.getMessage());
-        }
+    public void add(T data){
+        List<T> datos = leer();
+        datos.add(data);
     }
 
-    public static boolean eliminarPorPosicion(String rutaArchivo, int posicion) {
-        List<Persona> users = leer(rutaArchivo);
-
-        if (posicion < 0 || posicion >= users.size()) {
-            System.err.println("Posición fuera de rango: " + posicion);
-            return false;
-        }
-
-        users.remove(posicion);
-        escribir(rutaArchivo, users);
-        return true;
-    }
-
-    public static void vaciar(String rutaArchivo) {
-        verificarOCrearArchivo(rutaArchivo); // Verificar y crear el archivo si no existe
-        try (FileOutputStream fos = new FileOutputStream(rutaArchivo);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            System.out.println("El archivo ha sido vaciado correctamente.");
-        } catch (IOException e) {
-            System.err.println("Error al vaciar el archivo: " + e.getMessage());
-        }
-    }
 }

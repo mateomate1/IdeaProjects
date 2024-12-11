@@ -90,7 +90,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.dam.di.gestion.gestiondeservicios/com.dam.di.gestion.gestiondeservicios.HelloApplication
+                                com.dam.di.gestion.gestiondeservicios/com.dam.di.gestion.gestiondeservicios.Application
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

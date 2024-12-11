@@ -7,77 +7,88 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorBin<T> {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GestorBin.class);
-    private final String rutaArchivo;
+public class GestorBin <T>{
+    private static final Logger log = LoggerFactory.getLogger(GestorBin.class);
 
-    public GestorBin(String rutaArchivo) {
+    private String rutaArchivo;
+    private File archivo;
+
+    public GestorBin (String rutaArchivo){
         this.rutaArchivo = rutaArchivo;
-        verifyFile();
-    }
-
-    private void verifyFile() {
-        File archivo = new File(rutaArchivo);
-        try {
-            if (!archivo.exists()) {
+        archivo = new File(rutaArchivo);
+        if(!archivo.exists()) {
+            log.debug("El archivo no existe");
+            try {
+                log.debug("Creando archivo");
                 archivo.createNewFile();
-                LOGGER.info("Archivo creado: {}", rutaArchivo);
+                log.debug("Archivo creado con exito");
+            } catch (IOException e) {
+                log.error("Error creando el archivo");
             }
-        } catch (IOException e) {
-            LOGGER.error("Error al crear el archivo: {}", e.getMessage(), e);
         }
-    }
-
-    public void add(T data) {
-        List<T> items = leer();
-        items.add(data);
-        escribir(items);
     }
 
     public List<T> leer() {
-        List<T> items = new ArrayList<>();
+        List<T> datos = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(rutaArchivo);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
-
-            items = (List<T>) ois.readObject();
-
-        } catch (EOFException e) {
-            // Fin del archivo alcanzado
+            try {
+                while (true) {
+                    T data = (T) ois.readObject();
+                    datos.add(data);
+                }
+            } catch (EOFException e) {
+                // Fin del archivo alcanzado
+            } catch (ClassNotFoundException e) {
+                log.error("Error al deserializar el objeto: " + e.getMessage());
+            }
         } catch (FileNotFoundException e) {
-            LOGGER.warn("El archivo no existe: {}", e.getMessage());
-        } catch (IOException | ClassNotFoundException e) {
-            LOGGER.error("Error al leer el archivo: {}", e.getMessage(), e);
+            log.error("El archivo no existe: " + e.getMessage());
+        } catch (IOException e) {
+            log.error("Error al leer el archivo: " + e.getMessage());
         }
 
-        return items;
+        return datos;
     }
 
-    public void escribir(List<T> data) {
+    public void escribir(List<T> datos) {
         try (FileOutputStream fos = new FileOutputStream(rutaArchivo);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-            oos.writeObject(data);
-            LOGGER.info("Datos escritos en el archivo correctamente.");
+            for (T data : datos) {
+                oos.writeObject(data);
+            }
+            log.debug("Datos escritos en el archivo correctamente.");
         } catch (IOException e) {
-            LOGGER.error("Error al escribir en el archivo: {}", e.getMessage(), e);
+            log.error("Error al escribir en el archivo: " + e.getMessage());
         }
     }
 
-    public boolean eliminarPorPosicion(int posicion) {
-        List<T> items = leer();
+    public void add(T data){
+        List<T> datos = leer();
+        datos.add(data);
+        escribir(datos);
+    }
 
-        if (posicion < 0 || posicion >= items.size()) {
-            LOGGER.warn("Posición fuera de rango: {}", posicion);
+    public boolean eliminarPorPosicion(int posicion){
+        List<T> datos = leer();
+
+        if(posicion < 0 || posicion >= datos.size()){
+            log.warn("Posición fuera de rango: " + posicion);
             return false;
         }
-
-        items.remove(posicion);
-        escribir(items);
+        datos.remove(posicion);
+        escribir(datos);
         return true;
     }
 
-    public void vaciar() {
-        escribir(new ArrayList<>());
-        LOGGER.info("El archivo ha sido vaciado correctamente.");
+    public void vaciar(){
+        try (FileOutputStream fos = new FileOutputStream(rutaArchivo);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+            log.debug("El archivo ha sido vaciado correctamente.");
+        } catch (IOException e) {
+            log.error("Error al vaciar el archivo: {}", e.getMessage());
+        }
     }
+
 }
