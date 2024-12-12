@@ -31,17 +31,25 @@ public class GestorBin <T>{
     public List<T> leer() {
         List<T> datos = new ArrayList<>();
 
+        if (archivo.length() == 0) {
+            log.warn("El archivo está vacío. No hay datos para leer.");
+            return datos;
+        }
+
         try (FileInputStream fis = new FileInputStream(rutaArchivo);
              ObjectInputStream ois = new ObjectInputStream(fis)) {
-            try {
-                while (true) {
+            boolean EOF = false;
+            while (!EOF) {
+                try {
                     T data = (T) ois.readObject();
                     datos.add(data);
+                } catch (EOFException e) {
+                    log.debug("Fin del archivo alcanzado.");
+                    EOF = true;
+                    break; // Salimos del bucle al alcanzar el fin del archivo.
+                } catch (ClassNotFoundException e) {
+                    log.error("Error al deserializar un objeto: " + e.getMessage());
                 }
-            } catch (EOFException e) {
-                // Fin del archivo alcanzado
-            } catch (ClassNotFoundException e) {
-                log.error("Error al deserializar el objeto: " + e.getMessage());
             }
         } catch (FileNotFoundException e) {
             log.error("El archivo no existe: " + e.getMessage());
@@ -51,6 +59,7 @@ public class GestorBin <T>{
 
         return datos;
     }
+
 
     public void escribir(List<T> datos) {
         try (FileOutputStream fos = new FileOutputStream(rutaArchivo);
