@@ -17,7 +17,7 @@ public class Usuario implements Serializable {
     private final int ID;
     private String password;
     private final String rutaArchivos = "users.dat";
-    GestorBin<Usuario> gestorBin = new GestorBin<>(rutaArchivos);
+    private transient GestorBin<Usuario> gestorBin = new GestorBin<>(rutaArchivos);
 
     public Usuario(String password) {
         ID = generarIDUnico();
@@ -101,6 +101,10 @@ public class Usuario implements Serializable {
         }else {
             return false;
         }
+    }
+
+    public List<Usuario> mostrar (){
+        return gestorBin.leer();
     }
 
     @Override

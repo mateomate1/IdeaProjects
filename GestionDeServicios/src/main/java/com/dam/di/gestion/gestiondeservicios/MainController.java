@@ -1,31 +1,25 @@
 package com.dam.di.gestion.gestiondeservicios;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class MainController {
+    @FXML Button btnAlta;
+
     @FXML
-    public void abrirAlta() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Alta.fxml"));
-        Parent nuevaPantalla = loader.load();
-
-        // Obtener el Stage actual desde cualquier componente en la escena
-        Stage stage = (Stage) nuevaPantalla.getScene().getWindow();
-
-        // Cambiar la escena
-        stage.setScene(new Scene(nuevaPantalla));
-
-        Stage stageActual = (Stage) nuevaPantalla.getScene().getWindow();
-
+    public void abrirAlta(ActionEvent actionEvent) throws IOException {
+        WindowsHandler.load("Alta.fxml");
+        WindowsHandler.close((Stage) btnAlta.getScene().getWindow());
     }
-    @FXML
-    public void abrirLogin(){
 
+    @FXML
+    public void abrirLogin(ActionEvent actionEvent) throws IOException {
+        WindowsHandler.load("Login.fxml");
+        WindowsHandler.close((Stage) btnAlta.getScene().getWindow());
     }
 }
