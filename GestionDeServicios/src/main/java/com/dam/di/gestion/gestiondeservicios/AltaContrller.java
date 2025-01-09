@@ -29,42 +29,32 @@ public class AltaContrller {
             u.setFechaNacimiento(inputFecha.getValue());
             if (u.alta()) {
                 WindowsHandler.load("initView.fxml");
-                for (Usuario x : u.mostrar()){
-                    System.out.println(x);
-                }
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setTitle("Info");
                 alert.setContentText("Persona añadida correctamente");
-                dormirSegundos(2);
-                alert.close();
-
+                alert.showAndWait();
+                close();
             } else {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setHeaderText(null);
                 alert.setTitle("Info");
                 alert.setContentText("Persona no añadida");
+                alert.showAndWait();
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("El usuario no tiene contraseña");
+            alert.showAndWait();
         }
     }
 
     @FXML
-    public void cancelar() throws IOException {
+    public void close() throws IOException {
         WindowsHandler.load("initView.fxml");
         WindowsHandler.close((Stage) inputNombre.getScene().getWindow());
-    }
-
-    public void dormirSegundos(int segundos) {
-        try {
-            TimeUnit.SECONDS.sleep(segundos);
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
 }

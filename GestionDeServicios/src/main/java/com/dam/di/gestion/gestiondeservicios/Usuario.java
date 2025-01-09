@@ -7,50 +7,33 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Usuario implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(Usuario.class);
 
     private String username, nombre, apellidos;
     private LocalDate fechaNacimiento;
-    private final int ID;
     private String password;
     private final String rutaArchivos = "users.dat";
     private transient GestorBin<Usuario> gestorBin = new GestorBin<>(rutaArchivos);
 
     public Usuario(String password) {
-        ID = generarIDUnico();
-        if(password.trim().isEmpty() || password == null){
+        if (password == null || password.trim().isEmpty()) {
             throw new IllegalArgumentException("La contraseña no puede estar vacía.");
         }
-        this.password=password;
+        this.password = password;
     }
 
-    private int generarIDUnico() {
-        List<Usuario> usuarios = gestorBin.leer();
-        int nuevoID = 1; // Empezamos desde 1.
-
-        // Buscar el ID más alto ya existente
-        for (Usuario usuario : usuarios) {
-            if (usuario.getID() >= nuevoID) {
-                nuevoID = usuario.getID() + 1;
-            }
-        }
-
-        return nuevoID;
-    }
-
-    public void newPassword(String vieja, String nueva){
+    public void newPassword(String vieja, String nueva) {
         if (vieja.equals(password)) {
-            if(nueva.trim().isEmpty() || nueva == null){
+            if (nueva == null || nueva.trim().isEmpty()) {
                 throw new IllegalArgumentException("La contraseña no puede estar vacía.");
             }
             password = nueva;
-            log.warn("Contrasena cambiada con exito.");
+            log.warn("Contraseña cambiada con éxito.");
+        } else {
+            log.warn("Contraseña incorrecta, no se cambiará la contraseña.");
         }
-        else
-            log.warn("Contrasena incorrecta, ne se cambiara la contrasena.");
     }
 
     public String getUsername() {
@@ -58,6 +41,9 @@ public class Usuario implements Serializable {
     }
 
     public void setUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new IllegalArgumentException("El nombre de usuario no puede estar vacío.");
+        }
         this.username = username;
     }
 
@@ -77,10 +63,6 @@ public class Usuario implements Serializable {
         this.apellidos = apellidos;
     }
 
-    public int getID() {
-        return ID;
-    }
-
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -89,42 +71,54 @@ public class Usuario implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public boolean login(){
-        boolean succed = false;
-        return succed;
-    }
-
-    public boolean alta(){
-        if(username!=null&& !(username.isBlank())){
-            gestorBin.add(this);
+    public boolean login(String password) {
+        if(this.password.equals(password)){
             return true;
-        }else {
+        } else{
             return false;
         }
     }
 
-    public List<Usuario> mostrar (){
+    public boolean alta() {
+        if (username == null || username.isBlank()) {
+            log.error("El nombre de usuario no puede estar vacío.");
+            return false;
+        }
+
+        List<Usuario> usuarios = gestorBin.leer();
+        for (Usuario usuario : usuarios) {
+            if (usuario.getUsername().equals(this.username)) {
+                log.warn("El nombre de usuario ya existe: {}", username);
+                return false;
+            }
+        }
+
+        gestorBin.add(this);
+        log.info("Usuario añadido correctamente: {}", username);
+        return true;
+    }
+
+    public List<Usuario> mostrar() {
         return gestorBin.leer();
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hashCode(getID());
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(username, usuario.username);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(getID(), usuario.getID());
+    public int hashCode() {
+        return Objects.hash(username);
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
-                ", ID='" + ID + '\'' +
+                "username='" + username + '\'' +
                 '}';
     }
 }

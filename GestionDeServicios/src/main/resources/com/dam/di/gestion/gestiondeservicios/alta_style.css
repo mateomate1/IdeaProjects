@@ -1,0 +1,74 @@
+/* Archivo: estilo.css */
+
+/* Estilo general para el fondo del AnchorPane */
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-padding: 10;
+    -fx-font-family: Arial, sans-serif;
+}
+
+/* Estilo para los Labels */
+.label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+    -fx-padding: 2 0 5 0;
+}
+
+/* Estilo para los TextFields */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-padding: 5;
+    -fx-font-size: 12px;
+}
+
+/* Estilo para el PasswordField */
+.password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-padding: 5;
+    -fx-font-size: 12px;
+}
+
+/* Estilo para el DatePicker */
+.date-picker {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 4;
+    -fx-padding: 5;
+    -fx-font-size: 12px;
+}
+
+/* Estilo para los botones */
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-border-radius: 4;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 5;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+.button:pressed {
+    -fx-background-color: #3e8e41;
+}
+
+/* Estilo específico para el botón de cancelar */
+#btnCancel {
+    -fx-background-color: #f44336;
+}
+
+#btnCancel:hover {
+    -fx-background-color: #e53935;
+}
+
+#btnCancel:pressed {
+    -fx-background-color: #d32f2f;
+}
