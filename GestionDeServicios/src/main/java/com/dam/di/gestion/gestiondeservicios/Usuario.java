@@ -30,6 +30,7 @@ public class Usuario implements Serializable {
                 throw new IllegalArgumentException("La contraseña no puede estar vacía.");
             }
             password = nueva;
+
             log.warn("Contraseña cambiada con éxito.");
         } else {
             log.warn("Contraseña incorrecta, no se cambiará la contraseña.");

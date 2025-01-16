@@ -5,6 +5,7 @@ module com.dam.di.gestion.gestiondeservicios {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires org.slf4j;
+    requires java.sql;
 
     opens com.dam.di.gestion.gestiondeservicios to javafx.fxml;
     exports com.dam.di.gestion.gestiondeservicios;
