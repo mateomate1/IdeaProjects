@@ -11,11 +11,27 @@ import java.util.Objects;
 public class Usuario implements Serializable {
     private static final Logger log = LoggerFactory.getLogger(Usuario.class);
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     private String username, nombre, apellidos;
     private LocalDate fechaNacimiento;
     private String password;
     private final String rutaArchivos = "users.dat";
     private transient GestorBin<Usuario> gestorBin = new GestorBin<>(rutaArchivos);
+
+    public Usuario(String username,String password) {
+        if (password == null || password.trim().isEmpty()) {
+            throw new IllegalArgumentException("La contraseña no puede estar vacía.");
+        }
+        this.password = password;
+        this.username = username;
+    }
 
     public Usuario(String password) {
         if (password == null || password.trim().isEmpty()) {
