@@ -117,6 +117,7 @@ class GestorBinTest {
         expected.add("2");
         expected.add("3");
         expected.add("4");
+        expected.add("4");//Fallara porque la lista no incluye este numero
         assertLinesMatch(expected,resultado);
     }
 }

@@ -37,6 +37,6 @@ class UsuarioTest {
     @Test
     void testEquals() {
         Usuario b = new Usuario("Hola","1234");
-        assertNotEquals(u, b);
+        assertTrue(u.equals(b));//Fallara porque debe dar true
     }
 }
