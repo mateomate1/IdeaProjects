@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="informelibros-clases">
+    <output-path>$PROJECT_DIR$/out/artifacts/informelibros_clases</output-path>
+    <root id="archive" name="informelibros-clases.jar">
+      <element id="directory" name="biblioteca">
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/biblioteca/Autor.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/biblioteca/Libro.class" />
+      </element>
+    </root>
+  </artifact>
+</component>

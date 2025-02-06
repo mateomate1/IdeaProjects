@@ -1,16 +1,19 @@
 package biblioteca;
 
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JRDesignSortField;
+import net.sf.jasperreports.engine.type.SortFieldTypeEnum;
+import net.sf.jasperreports.engine.type.SortOrderEnum;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -36,10 +39,23 @@ public class Main {
         libros.add(libro4);
         //System.out.println("LIBROS ");
         try {
-            File fichero = new File("./informes/Cherry.jasper");
+            File fichero = new File("./informes/Libros.jasper");
             JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
             JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
-            JasperPrint print = JasperFillManager.fillReport(informe,null,coleccion);
+
+            HashMap<String, Object> parametetros = new HashMap<>();
+
+            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
+
+            JRDesignSortField sortField = new JRDesignSortField();
+            sortField.setName("ISBN");
+            sortField.setOrder(SortOrderEnum.ASCENDING);
+            sortField.setType(SortFieldTypeEnum.FIELD);
+            List<JRSortField> sortList = new ArrayList<>();
+            sortList.add(sortField);
+            parametetros.put(JRParameter.SORT_FIELDS, sortList);
+
+            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
             // JasperExportManager.exportReportToPdf(print,fichero);
             JasperViewer visor = new JasperViewer(print, false);
             visor.setVisible(true);
