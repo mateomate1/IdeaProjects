@@ -6,6 +6,9 @@ module app.creacionreporte {
     requires org.kordamp.bootstrapfx.core;
     requires net.sf.jasperreports.core;
 
+    requires java.sql;
+    requires jrviewer.fx;
+
     opens app.creacionreporte to javafx.fxml;
     exports app.creacionreporte;
 }

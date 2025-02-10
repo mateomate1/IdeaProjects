@@ -1,12 +1,18 @@
 package app.creacionreporte;
 
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
+import javafx.event.ActionEvent;
+import javafx.scene.layout.Pane;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
+import win.zqxu.jrviewer.JRViewerFX;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.sql.Connection;
 
 import java.io.File;
 import java.util.HashMap;
@@ -14,7 +20,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Reporte {
-    public static void main(String[] args) {
+    JasperPrint print = null;
+    public void generarInforme(Set<Habitacion> hotel) {
+        /*
         Reserva r1 = new Reserva(2, "Juan Perez", 3);
         Reserva r2 = new Reserva(1, "Maria Gomez", 2);
         Reserva r3 = new Reserva(3, "Carlos Ruiz", 4);
@@ -34,6 +42,7 @@ public class Reporte {
         hotel.add(h3);
         hotel.add(h4);
         hotel.add(h5);
+        */
 
         try {
             File fichero = new File("./informes/Habitaciones.jasper");
@@ -42,13 +51,32 @@ public class Reporte {
 
             HashMap<String, Object> parametetros = new HashMap<>();
 
-            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
+            parametetros.put("RUTA_IMAGEN", "./informes/hotel.png");
 
-            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
+            print = JasperFillManager.fillReport(informe,parametetros,coleccion);
             JasperViewer visor = new JasperViewer(print, false);
-            visor.setVisible(true);
+            //visor.setVisible(true);
         } catch (JRException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void exportarInforme(String ruta){
+        try {
+            //File reportFile = new File("informes/informeHotel.pdf");
+            File reportFile = new File(ruta);
+            OutputStream output = new FileOutputStream(reportFile);
+            JasperExportManager.exportReportToPdfStream(print, output);
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void mostrarInforme(Pane pane){
+        JRViewerFX visor = new JRViewerFX(print);
+        pane.getChildren().add(visor);
     }
 }
