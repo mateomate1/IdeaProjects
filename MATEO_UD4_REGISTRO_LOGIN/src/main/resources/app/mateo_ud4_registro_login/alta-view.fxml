@@ -7,18 +7,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.mateo_ud4_registro_login.altaController">
+<AnchorPane prefHeight="294.0" prefWidth="197.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.mateo_ud4_registro_login.altaController">
    <children>
-      <TextField fx:id="userName" layoutX="24.0" layoutY="42.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="42.0" />
-      <Label layoutX="49.0" layoutY="37.0" text="Nombre de usuario:" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="24.0" />
+      <TextField fx:id="userName" layoutX="24.0" layoutY="42.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="42.0" />
+      <Label layoutX="49.0" layoutY="37.0" text="Nombre de usuario:" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="24.0" />
       <Label layoutX="24.0" layoutY="76.0" text="Contraseña:" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="76.0" />
-      <Label layoutX="18.0" layoutY="154.0" text="Confirmar contraseña:" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="148.0" />
+      <Label layoutX="18.0" layoutY="154.0" text="Confirmar contraseña:" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="148.0" />
       <CheckBox fx:id="checkPass" layoutX="24.0" layoutY="128.0" mnemonicParsing="false" onAction="#chekVisible" text="CheckBox" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="122.0" />
-      <CheckBox fx:id="checkConfirm" layoutX="24.0" layoutY="200.0" mnemonicParsing="false" onAction="#chekDot" text="CheckBox" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="194.0" />
-      <TextField fx:id="visiblePass" layoutX="23.0" layoutY="93.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="94.0" />
-      <TextField fx:id="visibleConfirm" layoutX="49.0" layoutY="188.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="166.0" />
-      <PasswordField fx:id="dotPass" layoutX="50.0" layoutY="106.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="94.0" />
-      <PasswordField fx:id="dotConfirm" layoutX="50.0" layoutY="188.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="166.0" />
-      <Button fx:id="btnConfirmar" layoutX="24.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnConfirmar" prefHeight="26.0" prefWidth="150.0" text="Confirmar" />
+      <CheckBox fx:id="checkConfirm" layoutX="24.0" layoutY="200.0" mnemonicParsing="false" onAction="#chekConfirm" text="CheckBox" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="194.0" />
+      <TextField fx:id="visiblePass" layoutX="23.0" layoutY="93.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="94.0" />
+      <TextField fx:id="visibleConfirm" layoutX="49.0" layoutY="188.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="166.0" />
+      <PasswordField fx:id="dotPass" layoutX="50.0" layoutY="106.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="94.0" />
+      <PasswordField fx:id="dotConfirm" layoutX="50.0" layoutY="188.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="166.0" />
+      <Button fx:id="btnConfirmar" layoutX="24.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnConfirmar" prefHeight="26.0" prefWidth="150.0" text="Confirmar" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="232.0" />
    </children>
 </AnchorPane>

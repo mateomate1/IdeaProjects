@@ -30,6 +30,9 @@ public class UsersPasswordsData implements Serializable {
     public static boolean addUser(char[][] user) throws FileNotFoundException, IOException, ClassNotFoundException {
         boolean added = true;
         Map<String, String> users = UsersPasswordsData.recoverUsers();
+        if (users == null)
+            System.out.println("Esta vacio");
+        System.out.println("Usuarios recuperados");
         if (users.size() < MAX_USERS) { // Comprobar que no hay mas de 10 objetos
             if (user.length == 2) { // Comprobar que cada objeto contiene 2 campos(usuario-contraseña)
                 for (char[] row : user) { // Iterar sobre las filas (usuario/contraseña)
@@ -61,7 +64,7 @@ public class UsersPasswordsData implements Serializable {
     }
 
     public static Map<String, String> recoverUsers() throws IOException, ClassNotFoundException {
-        Map<String, String> salida = null;
+        Map<String, String> salida = new HashMap<>();
         try {
             FileInputStream fileIn = new FileInputStream(usersDataFile);
             ObjectInputStream in = new ObjectInputStream(fileIn);

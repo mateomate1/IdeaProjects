@@ -56,15 +56,7 @@ public class altaController {
                 (password.length() >= UsersPasswordsData.MIN_CHARS && password.length() <= UsersPasswordsData.MAX_CHARS)){
             char[][] user = new char[2][10];
             user[0] = name.toCharArray();
-            try { // Transformar contraseña a SHA-256
-                user[1] = toSHA256(password).toCharArray();
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmacion");
-                alert.setHeaderText("Tu contraseña es:");
-                alert.setContentText(user[1].toString());
-            } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
-                System.out.println("Contraseña no valida");
-            }
+            user[1] = password.toCharArray();
             try{
                 boolean salida = UsersPasswordsData.addUser(user); // Intentar guardar en archibo binario
                 //if (salida)
@@ -74,12 +66,15 @@ public class altaController {
                 alert.setTitle("Error");
                 alert.setHeaderText("Error interno al serializar el usuario");
                 alert.setContentText("No se ha guardado el usuario");
+                alert.showAndWait();
+                System.out.println(e.getMessage());
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Aviso");
             alert.setHeaderText("Tu usuario/contraseña no contienen entre 5-10 caracteres");
             alert.setContentText("No se ha guardado el usuario");
+            alert.showAndWait();
         }
     }
 
