@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Clases">
+    <output-path>$PROJECT_DIR$/out/artifacts/Clases</output-path>
+    <root id="archive" name="Clases.jar">
+      <element id="directory" name="app">
+        <element id="directory" name="hotel_2">
+          <element id="file-copy" path="$PROJECT_DIR$/target/classes/app/hotel_2/Reserva.class" />
+          <element id="file-copy" path="$PROJECT_DIR$/target/classes/app/hotel_2/Habitacion.class" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

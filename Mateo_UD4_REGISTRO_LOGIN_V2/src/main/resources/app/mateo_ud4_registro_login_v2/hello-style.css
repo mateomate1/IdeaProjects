@@ -1,0 +1,33 @@
+GridPane {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+}
+
+Button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+Button:hover {
+    -fx-background-color: #45a049;
+}
+
+#login {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+#alta {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+ImageView {
+    -fx-background-color: transparent;
+}

@@ -5,6 +5,7 @@ class Habitacion {
     private double precio;
 
     public Habitacion(int numero, double precio, Reserva reserve) {
+        //this.reserva = reserva;
         this.numero = numero;
         this.precio = precio;
     }

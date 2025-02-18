@@ -29,8 +29,8 @@ public class HelloController {
     @FXML
     public void btnExportar(ActionEvent actionEvent){
         if(generado){
-            String ruta = "informes/informeHotel.pdf";
-            r.exportarInforme(ruta);
+            String ruta = "./informes/informeHotel.pdf";
+            r.exportarInforme(hotel, ruta);
             label.setText("Informe exportado en " + ruta);
         } else{
             label.setText("No se puede exportar el informe sin haberlo generado");
@@ -39,7 +39,7 @@ public class HelloController {
     @FXML
     public void btnMostrar(ActionEvent actionEvent){
         if(generado){
-            r.mostrarInforme(panel);
+            r.mostrarInforme(hotel);
             label.setText("Mostrando informe");
         }
         else{

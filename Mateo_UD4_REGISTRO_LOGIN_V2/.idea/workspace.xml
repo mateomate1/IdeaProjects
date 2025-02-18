@@ -4,11 +4,60 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="278dbba0-685d-4660-8191-8f00799888d8" name="Changes" comment="" />
+    <list default="true" id="278dbba0-685d-4660-8191-8f00799888d8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../CreacionReporte/.idea/artifacts/CreacionReporte_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/.idea/artifacts/Clases.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/informes/Habitaciones.jasper" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/informes/hotel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/src/main/java/app/hotel_2/Habitacion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/src/main/java/app/hotel_2/Reserva.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Hotel_2/src/main/resources/app/hotel_2/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Mateo_UD4_REGISTRO_LOGIN_V2_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/Launcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/UsersPasswordsData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/altaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/loginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/alta-style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/alta-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/hello-style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/login-style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/login-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CreacionReporte/out/artifacts/ClasesHotel/ClasesHotel.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../CreacionReporte/out/artifacts/ClasesHotel/ClasesHotel.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/Habitacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/Habitacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/Reporte.java" beforeDir="false" afterPath="$PROJECT_DIR$/../CreacionReporte/src/main/java/app/creacionreporte/Reporte.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app/mateo_ud4_registro_login_v2/hello-view.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/UsersPasswordsData.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -17,9 +66,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2stAJsI6qiWHTAZNdoVjWJah56z" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -27,9 +76,32 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "Application.HelloApplication.executor": "Run",
+    "Application.Launcher.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Mateo/IdeaProjects/MATEO_UD4_REGISTRO_LOGIN",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mateo\IdeaProjects\Mateo_UD4_REGISTRO_LOGIN_V2" />
+      <recent name="C:\Users\Mateo\IdeaProjects\Mateo_UD4_REGISTRO_LOGIN_V2\src\main\resources\app\mateo_ud4_registro_login_v2" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mateo\IdeaProjects\Mateo_UD4_REGISTRO_LOGIN_V2\src\main\resources\app\mateo_ud4_registro_login_v2" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="app.mateo_ud4_registro_login_v2" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

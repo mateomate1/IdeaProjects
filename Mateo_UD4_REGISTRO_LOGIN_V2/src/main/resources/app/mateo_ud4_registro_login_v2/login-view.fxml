@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="526.0" prefWidth="295.0" stylesheets="@login-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.mateo_ud4_registro_login_v2.loginController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="340.6000122070312" minHeight="10.0" prefHeight="208.39998779296874" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="341.3999847412109" minHeight="10.0" prefHeight="246.8000122070313" valignment="BOTTOM" vgrow="ALWAYS" />
+   </rowConstraints>
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="313.0" prefWidth="272.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
+         <children>
+            <Label text="Nombre de usuario:" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="16.0" />
+            <TextField fx:id="userName" layoutY="17.600000381469727" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="36.0" />
+            <Label layoutX="24.0" layoutY="70.0" text="Contraseña:" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="70.0" />
+            <TextField fx:id="visiblePass" layoutX="24.0" layoutY="90.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="90.0" />
+            <CheckBox fx:id="checkPass" layoutX="24.0" layoutY="126.0" mnemonicParsing="false" onAction="#checkVisible" text="Ver contraseña" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" />
+            <PasswordField fx:id="dotPass" layoutX="24.0" layoutY="90.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="90.0" />
+            <Button fx:id="btnConfirmar" layoutX="64.0" layoutY="150.0" mnemonicParsing="false" onAction="#confirmar" text="Confirmar" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="160.0" />
+            <Button fx:id="btnVolver" layoutX="147.0" layoutY="187.0" mnemonicParsing="false" onAction="#volver" text="Volver" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="210.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>

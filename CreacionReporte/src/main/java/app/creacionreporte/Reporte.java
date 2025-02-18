@@ -21,6 +21,7 @@ import java.util.Set;
 
 public class Reporte {
     JasperPrint print = null;
+    JasperViewer visor = null;
     public void generarInforme(Set<Habitacion> hotel) {
         /*
         Reserva r1 = new Reserva(2, "Juan Perez", 3);
@@ -54,29 +55,48 @@ public class Reporte {
             parametetros.put("RUTA_IMAGEN", "./informes/hotel.png");
 
             print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            JasperViewer visor = new JasperViewer(print, false);
-            //visor.setVisible(true);
+            visor = new JasperViewer(print, false);
         } catch (JRException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void exportarInforme(String ruta){
+    public void exportarInforme(Set<Habitacion> hotel, String rutaPDF){
         try {
-            //File reportFile = new File("informes/informeHotel.pdf");
-            File reportFile = new File(ruta);
-            OutputStream output = new FileOutputStream(reportFile);
-            JasperExportManager.exportReportToPdfStream(print, output);
+            File fichero = new File("./informes/Habitaciones.jasper");
+            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
+            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(hotel);
 
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            HashMap<String, Object> parametros = new HashMap<>();
+            parametros.put("RUTA_IMAGEN", "./informes/hotel.png");
+
+            print = JasperFillManager.fillReport(informe, parametros, coleccion);
+            visor = new JasperViewer(print, false);
+
+            JasperExportManager.exportReportToPdfFile(print, rutaPDF);
+
+            System.out.println("Informe guardado en: " + rutaPDF);
+        } catch (JRException e) {
+            throw new RuntimeException("Error al generar o guardar el informe", e);
+        }
+
+    }
+
+    public void mostrarInforme(Set<Habitacion> hotel){
+        try {
+            File fichero = new File("./informes/Habitaciones.jasper");
+            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
+            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(hotel);
+
+            HashMap<String, Object> parametetros = new HashMap<>();
+
+            parametetros.put("RUTA_IMAGEN", "./informes/hotel.png");
+
+            print = JasperFillManager.fillReport(informe,parametetros,coleccion);
+            visor = new JasperViewer(print, false);
+            visor.setVisible(true);
         } catch (JRException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void mostrarInforme(Pane pane){
-        JRViewerFX visor = new JRViewerFX(print);
-        pane.getChildren().add(visor);
     }
 }

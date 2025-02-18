@@ -1,0 +1,71 @@
+GridPane {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 2px;
+    -fx-padding: 10px;
+}
+
+AnchorPane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #888888;
+    -fx-border-width: 1px;
+}
+
+TextField {
+    -fx-background-color: #e6e6e6;
+    -fx-border-color: #b0b0b0;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+PasswordField {
+    -fx-background-color: #e6e6e6;
+    -fx-border-color: #b0b0b0;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+CheckBox {
+    -fx-text-fill: #333333;
+    -fx-background-color: transparent;
+    -fx-border-color: #b0b0b0;
+    -fx-padding: 5px;
+}
+
+Button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+
+#userName {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+#btnConfirmar {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+#btnVolver {
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+}
+
+#labelUserName {
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: normal;
+}
+
+#checkPass {
+    -fx-font-size: 12px;
+    -fx-font-family: "Arial";
+    -fx-font-weight: normal;
+}
