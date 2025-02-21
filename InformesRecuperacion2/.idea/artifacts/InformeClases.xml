@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="InformeClases">
+    <output-path>$PROJECT_DIR$/out/artifacts/InformeClases</output-path>
+    <root id="archive" name="InformeClases.jar">
+      <element id="directory" name="clases">
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/com/dam/di/informesrecuperacion2/Categoria.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/com/dam/di/informesrecuperacion2/Producto.class" />
+      </element>
+    </root>
+  </artifact>
+</component>
