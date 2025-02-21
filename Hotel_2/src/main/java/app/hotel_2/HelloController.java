@@ -3,11 +3,23 @@ package app.hotel_2;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.sql.Connection;
 
 import javafx.embed.swing.SwingFXUtils;
+=======
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.embed.swing.SwingNode;
+>>>>>>> Stashed changes
 =======
 import java.io.*;
 import java.nio.file.Files;
@@ -55,7 +67,11 @@ import javafx.scene.layout.Pane;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import javafx.stage.Stage;
+=======
+import javafx.util.Duration;
+>>>>>>> Stashed changes
 =======
 import javafx.util.Duration;
 >>>>>>> Stashed changes
@@ -77,11 +93,16 @@ import win.zqxu.jrviewer.JRViewerFX;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 
+=======
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+>>>>>>> Stashed changes
 =======
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
@@ -174,11 +195,14 @@ public class HelloController implements Initializable {
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public void btnMostrar(ActionEvent actionEvent){
         //JRViewerFX visor = new JRViewerFX(print);
         //panel.getChildren().add(visor);
         mostrarPDFEnPanel(panel,"informes/informesHotel.pdf");
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -212,8 +236,73 @@ public class HelloController implements Initializable {
         initJavaHelpConfig();
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 =======
+=======
+    }
+
+    private void initJavaHelpConfig() {
+        try {
+            // Cargar el archivo de configuración de JavaHelp
+            File helpFile = new File("help/help_set.hs");
+            URL helpURL = helpFile.toURI().toURL();
+            HelpSet helpSet = new HelpSet(getClass().getClassLoader(), helpURL);
+            HelpBroker helpBroker = helpSet.createHelpBroker();
+
+            SwingUtilities.invokeLater(() -> {
+                helpButton = new JButton("Ayuda");
+                helpButton.setBounds(0, 0, 150, 50);
+                helpButtonNode.setContent(helpButton);
+
+                // Asociar el botón con la ayuda de JavaHelp
+                helpBroker.enableHelpOnButton(helpButton, "aplicacion", helpSet);
+
+                // Evita que el botón se vea en negro
+                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2),
+                        e -> helpButtonNode.getContent().repaint()));
+                timeline.playFromStart();
+            });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al cargar la ayuda de JavaHelp", e);
+        }
+    }
+
+    public static void copiarArchivo(String origen, String destino) {
+        Path sourcePath = Path.of(origen);
+        Path destinationPath = Path.of(destino);
+
+        try {
+            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Archivo copiado con exito.");
+        } catch (IOException e) {
+            System.err.println("Error al copiar el archivo: " + e.getMessage());
+        }
+    /*
+    * File fichero = new File("./informes/Libros.jasper");
+            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
+            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
+
+            HashMap<String, Object> parametetros = new HashMap<>();
+
+            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
+
+            JRDesignSortField sortField = new JRDesignSortField();
+            sortField.setName("ISBN");
+            sortField.setOrder(SortOrderEnum.ASCENDING);
+            sortField.setType(SortFieldTypeEnum.FIELD);
+            List<JRSortField> sortList = new ArrayList<>();
+            sortList.add(sortField);
+            parametetros.put(JRParameter.SORT_FIELDS, sortList);
+
+            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
+            // JasperExportManager.exportReportToPdf(print,fichero);
+            JasperViewer visor = new JasperViewer(print, false);
+            visor.setVisible(true);
+    * */
+>>>>>>> Stashed changes
     }
 
     private void initJavaHelpConfig() {
