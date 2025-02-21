@@ -7,9 +7,15 @@ module app.hotel_2 {
     requires java.sql;
     requires jrviewer.fx;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     requires org.apache.pdfbox;
     requires javafx.swing;
     requires javafx.web;
+=======
+    requires java.desktop;
+    requires javahelp;
+    requires javafx.swing;
+>>>>>>> Stashed changes
 =======
     requires java.desktop;
     requires javahelp;
