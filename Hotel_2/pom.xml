@@ -15,6 +15,12 @@
     </properties>
 
     <dependencies>
+        <!-- JavaFX Swing para conversión de imágenes -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>17.0.6</version>
+        </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -34,6 +40,13 @@
         <artifactId>bootstrapfx-core</artifactId>
         <version>0.4.0</version>
     </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-web -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>25-ea+2</version>
+        </dependency>
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -51,6 +64,12 @@
             <groupId>net.sf.jasperreports</groupId>
             <artifactId>jasperreports</artifactId>
             <version>7.0.1</version>
+        </dependency>
+        <!-- PDFBox para cargar y renderizar PDFs -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>2.0.30</version> <!-- Usa la última versión disponible -->
         </dependency>
         <dependency>
             <groupId>win.zqxu</groupId>

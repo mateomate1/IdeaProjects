@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="unnamed">
+    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
+    <root id="archive" name="unnamed.jar">
+      <element id="directory" name="informes">
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/org/example/informereservas/Reserva.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/org/example/informereservas/Habitacion.class" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -12,6 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.io.UnsupportedEncodingException;
 
 public class loginController {
     @FXML TextField userName;
@@ -22,6 +24,8 @@ public class loginController {
 
     @FXML
     CheckBox checkPass;
+
+    private DBManager dbManager = new DBManager();  // Instancia del gestor de base de datos
 
     @FXML
     private void initialize() {
@@ -39,65 +43,60 @@ public class loginController {
         String user = userName.getText();
         String pass = dotPass.getText();
 
-        int validationResult = UsersPasswordsData.validar(user, pass);
+        // Validar el nombre de usuario y contraseña con los caracteres permitidos
+        int validationResult = DBManager.validar(user, pass);
 
         if (validationResult == -1) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error de validación");
-            alert.setHeaderText(null);
-            alert.setContentText("El nombre de usuario contienen caracteres no válidos.");
-            alert.showAndWait();
+            showError("Error de validación", "El nombre de usuario contiene caracteres no válidos.");
         } else if (validationResult == 0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error de validación");
-            alert.setHeaderText(null);
-            alert.setContentText("La contraseña contiene caracteres no válidos.");
-            alert.showAndWait();
+            showError("Error de validación", "La contraseña contiene caracteres no válidos.");
         } else {
-            UsersPasswordsData usersData = new UsersPasswordsData();
-            int authResult = usersData.authenticateUser(user, pass);
+            // Codificar la contraseña antes de la autenticación
+            try {
+                pass = dbManager.encode(pass);  // Codificar la contraseña
+            } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+                showError("Error de codificación", "Error al codificar la contraseña.");
+                return;
+            }
+
+            // Autenticar al usuario
+            int authResult = dbManager.authenticateUser(user, pass);
 
             switch (authResult) {
                 case -1:
-                    Alert alertUserNotFound = new Alert(Alert.AlertType.ERROR);
-                    alertUserNotFound.setTitle("Error de autenticación");
-                    alertUserNotFound.setHeaderText(null);
-                    alertUserNotFound.setContentText("El usuario no existe.");
-                    alertUserNotFound.showAndWait();
+                    showError("Error de autenticación", "El usuario no existe.");
                     break;
                 case 0:
-                    Alert alertWrongPassword = new Alert(Alert.AlertType.ERROR);
-                    alertWrongPassword.setTitle("Error de autenticación");
-                    alertWrongPassword.setHeaderText(null);
-                    alertWrongPassword.setContentText("Contraseña incorrecta.");
-                    alertWrongPassword.showAndWait();
+                    showError("Error de autenticación", "Contraseña incorrecta.");
                     break;
                 case 1:
-                    Alert alertSuccess = new Alert(Alert.AlertType.INFORMATION);
-                    alertSuccess.setTitle("Inicio de sesión exitoso");
-                    alertSuccess.setHeaderText(null);
-                    alertSuccess.setContentText("Inicio de sesión exitoso.");
-                    alertSuccess.showAndWait();
+                    showInfo("Inicio de sesión exitoso", "Inicio de sesión exitoso.");
                     break;
                 case -2:
-                    Alert alertHashError = new Alert(Alert.AlertType.ERROR);
-                    alertHashError.setTitle("Error al codificar");
-                    alertHashError.setHeaderText(null);
-                    alertHashError.setContentText("Error al codificar la contraseña.");
-                    alertHashError.showAndWait();
+                    showError("Error al codificar", "Error al codificar la contraseña.");
                     break;
                 default:
-                    Alert alertUnknownError = new Alert(Alert.AlertType.ERROR);
-                    alertUnknownError.setTitle("Error desconocido");
-                    alertUnknownError.setHeaderText(null);
-                    alertUnknownError.setContentText("Error desconocido.");
-                    alertUnknownError.showAndWait();
+                    showError("Error desconocido", "Error desconocido.");
                     break;
             }
         }
     }
 
+    private void showError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
+    private void showInfo(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     @FXML
     public void volver(ActionEvent event) {
@@ -119,5 +118,4 @@ public class loginController {
             alert.showAndWait();
         }
     }
-
 }

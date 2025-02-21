@@ -27,6 +27,8 @@ public class altaController {
     @FXML CheckBox checkPass;
     @FXML CheckBox checkConfirm;
 
+    private DBManager dbManager = new DBManager(); // Instancia de DBManager
+
     @FXML
     private void initialize() {
         dotPass.textProperty().addListener((obs, oldVal, newVal) -> visiblePass.setText(newVal));
@@ -36,11 +38,11 @@ public class altaController {
         visibleConfirm.textProperty().addListener((obs, oldVal, newVal) -> dotConfirm.setText(newVal));
     }
 
-
     @FXML
     public void chekVisible(ActionEvent actionEvent){
         dotPass.setVisible(!checkPass.isSelected());
     }
+
     @FXML
     public void chekConfirm(ActionEvent actionEvent){
         dotConfirm.setVisible(!checkConfirm.isSelected());
@@ -61,43 +63,47 @@ public class altaController {
         }
 
         pass = visiblePass.getText();
-        UsersPasswordsData upd = new UsersPasswordsData();
 
-        int validation = UsersPasswordsData.validar(user, pass);
+        // Validación del nombre de usuario y la contraseña
+        int validation = DBManager.validar(user, pass);
         if (validation == -1) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText("El nombre de usuario contiene caracteres no válidos");
-            alert.setContentText("Los caracteres válidos son: " + UsersPasswordsData.USABLE_CHARS);
+            alert.setContentText("Los caracteres válidos son: " + DBManager.USABLE_CHARS);
             alert.showAndWait();
             return;
         } else if (validation == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText("La contraseña contiene caracteres no válidos");
-            alert.setContentText("Los caracteres válidos son: " + UsersPasswordsData.USABLE_CHARS);
+            alert.setContentText("Los caracteres válidos son: " + DBManager.USABLE_CHARS);
             alert.showAndWait();
             return;
         }
 
-        if (upd.getUsers().containsKey(user)) {
+        // Verificamos si el usuario ya existe
+        int totalUsuarios = dbManager.contarUsuarios();
+        if (totalUsuarios == DBManager.MAX_USERS) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
-            alert.setHeaderText("Error de credenciales");
-            alert.setContentText("Este usuario ya existe...");
+            alert.setHeaderText("Límite de usuarios alcanzado");
+            alert.setContentText("No se pueden almacenar más usuarios.");
             alert.showAndWait();
             return;
         }
 
         try {
-            pass = upd.encode(pass);
+            // Cifrado de la contraseña
+            pass = dbManager.encode(pass);
 
-            int methodOut = upd.addUser(user, pass);
-            if (methodOut == 1) {
+            // Intentamos agregar al nuevo usuario
+            boolean userAdded = dbManager.addUser(user, pass);
+            if (!userAdded) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Advertencia");
-                alert.setHeaderText("Límite de usuarios alcanzado");
-                alert.setContentText("No se pueden almacenar más usuarios.");
+                alert.setHeaderText("Error al agregar el usuario");
+                alert.setContentText("No se pudo agregar el usuario.");
                 alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -135,6 +141,4 @@ public class altaController {
             alert.showAndWait();
         }
     }
-
 }
-

@@ -1,23 +1,37 @@
 package app.hotel_2;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.sql.Connection;
 
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.rendering.PDFRenderer;
 import win.zqxu.jrviewer.JRViewerFX;
 
-import java.io.File;
+import javafx.scene.layout.Pane;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+
+
+import javax.swing.*;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -84,8 +98,9 @@ public class HelloController implements Initializable {
     }
     @FXML
     public void btnMostrar(ActionEvent actionEvent){
-        JRViewerFX visor = new JRViewerFX(print);
-        panel.getChildren().add(visor);
+        //JRViewerFX visor = new JRViewerFX(print);
+        //panel.getChildren().add(visor);
+        mostrarPDFEnPanel(panel,"informes/informesHotel.pdf");
     }
 
     @Override
@@ -108,4 +123,36 @@ public class HelloController implements Initializable {
         hotel.add(h4);
         hotel.add(h5);
     }
+
+    public static void copiarArchivo(String origen, String destino) throws IOException {
+        File archivoOrigen = new File(origen);
+        File archivoDestino = new File(destino);
+
+        try (FileInputStream fis = new FileInputStream(archivoOrigen);
+             FileOutputStream fos = new FileOutputStream(archivoDestino)) {
+
+            byte[] buffer = new byte[1024];
+            int bytesLeidos;
+
+            while ((bytesLeidos = fis.read(buffer)) != -1) {
+                fos.write(buffer, 0, bytesLeidos);
+            }
+        }
+    }
+
+    public void mostrarPDFEnPanel(Pane panel, String rutaPDF) {
+        WebView webView = new WebView();
+        // Obtener el motor de WebView
+        WebEngine webEngine = webView.getEngine();
+
+        // Ruta al archivo PDF (asegúrate de que la ruta sea correcta)
+        String pdfUrl = "file:///" + new File(rutaPDF).getAbsolutePath().replace("\\", "/");
+
+        // Cargar el archivo PDF en el WebView (los navegadores generalmente lo permiten)
+        webEngine.load(pdfUrl);
+
+        // Añadir el WebView al panel para mostrar el PDF
+        panel.getChildren().add(webView);
+    }
+
 }
