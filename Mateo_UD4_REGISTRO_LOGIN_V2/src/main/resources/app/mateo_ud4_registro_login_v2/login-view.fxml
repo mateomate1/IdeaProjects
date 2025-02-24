@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane prefHeight="526.0" prefWidth="295.0" stylesheets="@login-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.mateo_ud4_registro_login_v2.loginController">
+<GridPane minHeight="500.0" minWidth="193.0" prefHeight="526.0" prefWidth="295.0" stylesheets="@login-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.mateo_ud4_registro_login_v2.loginController">
    <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" />
    </columnConstraints>

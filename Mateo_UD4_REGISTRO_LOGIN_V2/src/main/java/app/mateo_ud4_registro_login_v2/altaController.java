@@ -59,25 +59,27 @@ public class altaController {
             alert.setHeaderText("Las contraseñas no coinciden");
             alert.setContentText("Por favor, verifica que ambas contraseñas sean iguales.");
             alert.showAndWait();
-            return;
         }
 
         pass = visiblePass.getText();
+        userName.clear();
+        visiblePass.clear();
+        visibleConfirm.clear();
 
         // Validación del nombre de usuario y la contraseña
         int validation = DBManager.validar(user, pass);
         if (validation == -1) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
-            alert.setHeaderText("El nombre de usuario contiene caracteres no válidos");
-            alert.setContentText("Los caracteres válidos son: " + DBManager.USABLE_CHARS);
+            alert.setHeaderText("El nombre de usuario o la contraseña contienen caracteres no validos.");
+            alert.setContentText("Los caracteres válidos son: " + DBManager.USABLE_CHARS.toString());
             alert.showAndWait();
             return;
         } else if (validation == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
-            alert.setHeaderText("La contraseña contiene caracteres no válidos");
-            alert.setContentText("Los caracteres válidos son: " + DBManager.USABLE_CHARS);
+            alert.setHeaderText("El nombre de usuario o la contraseña no cumplen con las especificaciones necesarias.");
+            alert.setContentText("El usuario y contraseña deben tener entre "+DBManager.MAX_CHARS+"-"+DBManager.MIN_CHARS+" y debe contener al menos una mayuscula y un numero.");
             alert.showAndWait();
             return;
         }
@@ -90,7 +92,6 @@ public class altaController {
             alert.setHeaderText("Límite de usuarios alcanzado");
             alert.setContentText("No se pueden almacenar más usuarios.");
             alert.showAndWait();
-            return;
         }
 
         try {
@@ -119,6 +120,9 @@ public class altaController {
             alert.setContentText("No se ha podido cifrar la contraseña, no se guardará el usuario...");
             alert.showAndWait();
         }
+        userName.clear();
+        visiblePass.clear();
+        visibleConfirm.clear();
     }
 
     @FXML

@@ -41,8 +41,9 @@ public class loginController {
     @FXML
     public void confirmar(ActionEvent actionEvent) {
         String user = userName.getText();
-        String pass = dotPass.getText();
-
+        String pass = visiblePass.getText();
+        userName.clear();
+        visiblePass.clear();
         // Validar el nombre de usuario y contraseña con los caracteres permitidos
         int validationResult = DBManager.validar(user, pass);
 

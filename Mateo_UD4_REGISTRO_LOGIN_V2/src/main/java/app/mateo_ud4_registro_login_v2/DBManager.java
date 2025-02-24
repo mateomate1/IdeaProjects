@@ -14,8 +14,7 @@ import java.util.Properties;
 public class DBManager {
     private static final Logger log = LoggerFactory.getLogger(DBManager.class);
 
-    public static final int MAX_USERS = 10;
-    public static final int MAX_CHARS = 10;
+    public static final int MAX_USERS = 10, MAX_CHARS = 10, MIN_CHARS = 5;
     public static final String
             USABLE_CHARS =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + // Letras mayúsculas
@@ -138,27 +137,35 @@ public class DBManager {
      * @param user El nombre de usuario a validar.
      * @param pass La contrasena a validar.
      * @return Un codigo entero que indica el estado de la validacion:
-     *         -1: El nombre de usuario contiene caracteres no validos.
-     *         0: La contrasena contiene caracteres no validos.
+     *         -1: El nombre de usuario o la contraseña contienen caracteres no validos.
+     *         0: El nombre de usuario o la contraseña no cumplen con las especificaciones necesarias.
      *         1: El nombre de usuario y la contrasena son validos.
      */
     public static int validar(String user, String pass){
-        if (user == null || user.trim().isEmpty()) {
-            return -1;
+        if (user == null || user.trim().isEmpty() || pass == null || pass.trim().isEmpty()) {
+            return -1; // Usuario o contraseña vacíos
         }
-        if (pass == null || pass.trim().isEmpty()) {
-            return -1;
+
+        if (user.length() < MIN_CHARS || user.length() > MAX_CHARS || pass.length() < MIN_CHARS || pass.length() > MAX_CHARS) {
+            return 0; // Longitud fuera del rango permitido
         }
+
         for(Character c : user.toCharArray()){
             if (USABLE_CHARS.indexOf(c) == -1) {
-                log.warn("Carácter no válido detectado: [" + c + "] con código ASCII: " + (int)c);
                 return -1; // Codigo usuario no valido
             }
         }
+        boolean hasUppercase = false;
+        boolean hasDigit = false;
         for(Character c : pass.toCharArray()){
             if (USABLE_CHARS.indexOf(c) == -1) {
-                return 0; // Codigo contraseña no valida
+                return -1; // Codigo contraseña no valida
             }
+            if (Character.isUpperCase(c)) hasUppercase = true;
+            if (Character.isDigit(c)) hasDigit = true;
+        }
+        if (!hasUppercase || !hasDigit) {
+            return 0; // La contraseña no cumple con los requisitos de seguridad
         }
         return 1; // Codigo validado
     }
