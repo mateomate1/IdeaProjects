@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="278dbba0-685d-4660-8191-8f00799888d8" name="Changes" comment="" />
+=======
+    <list default="true" id="278dbba0-685d-4660-8191-8f00799888d8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/DBManager.java" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +56,11 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+<<<<<<< Updated upstream
     "last_opened_file_path": "C:/Users/alumno/IdeaProjects/Mateo_UD4_REGISTRO_LOGIN_V2",
+=======
+    "last_opened_file_path": "C:/Users/Mateo/IdeaProjects/JavaHelp",
+>>>>>>> Stashed changes
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
