@@ -15,6 +15,7 @@ public class DBManager {
     private static final Logger log = LoggerFactory.getLogger(DBManager.class);
 
     public static final int MAX_USERS = 10;
+    public static final int MAX_CHARS = 10;
     public static final String
             USABLE_CHARS =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + // Letras mayúsculas
