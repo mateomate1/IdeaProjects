@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="278dbba0-685d-4660-8191-8f00799888d8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../MATEO_UD4_REGISTRO_LOGIN/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../MATEO_UD4_REGISTRO_LOGIN/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MATEO_UD4_REGISTRO_LOGIN/src/main/java/app/mateo_ud4_registro_login/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MATEO_UD4_REGISTRO_LOGIN/src/main/java/app/mateo_ud4_registro_login/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MATEO_UD4_REGISTRO_LOGIN/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/../MATEO_UD4_REGISTRO_LOGIN/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Mateo_UD4_REGISTRO_LOGIN_V2_jar/Mateo_UD4_REGISTRO_LOGIN_V2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/Mateo_UD4_REGISTRO_LOGIN_V2_jar/Mateo_UD4_REGISTRO_LOGIN_V2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/Launcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/altaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/altaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/loginController.java" afterDir="false" />
-    </list>
+    <list default="true" id="278dbba0-685d-4660-8191-8f00799888d8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,7 +49,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Mateo/IdeaProjects/InformeReservasAlvaro1",
+    "last_opened_file_path": "C:/Users/alumno/IdeaProjects/Mateo_UD4_REGISTRO_LOGIN_V2",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
