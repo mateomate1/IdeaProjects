@@ -64,13 +64,14 @@ public class DBManager {
         return conexion;
     }
 
-    public boolean addUser(String username, String contrasena) {
+
+    public int addUser(String username, String contrasena) {
         // Primero, contamos el total de usuarios
         int totalUsuarios = contarUsuarios();
 
         if (totalUsuarios >= MAX_USERS) {
             log.warn("No se puede agregar el usuario: el limite de usuarios es 10.");
-            return false; // Si hay más de 10 usuarios, no se añade el nuevo
+            return 1; // Si hay más de 10 usuarios, no se añade el nuevo
         }
 
         // Si el total de usuarios es menor que 10, se procede a agregar el nuevo usuario
@@ -82,14 +83,14 @@ public class DBManager {
 
             if (rowsAffected > 0) {
                 log.debug("Usuario " + username + " agregado correctamente.");
-                return true; // Usuario agregado con éxito
+                return 0; // Usuario agregado con éxito
             } else {
                 log.warn("No se pudo agregar el usuario: " + username);
-                return false; // Si no se puede agregar el usuario
+                return -1; // Si no se puede agregar el usuario
             }
         } catch (SQLException e) {
             log.error("Error al agregar usuario: " + e.getMessage(), e);
-            return false; // Error al ejecutar la consulta
+            return -1; // Error al ejecutar la consulta
         }
     }
 

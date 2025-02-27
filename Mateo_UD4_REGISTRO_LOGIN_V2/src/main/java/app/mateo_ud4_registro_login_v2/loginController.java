@@ -40,30 +40,33 @@ public class loginController {
 
     @FXML
     public void confirmar(ActionEvent actionEvent) {
-        String user = userName.getText();
-        String pass = visiblePass.getText();
+        String usuario = userName.getText();
+        String contrasena = visiblePass.getText();
         userName.clear();
         visiblePass.clear();
-        // Validar el nombre de usuario y contraseña con los caracteres permitidos
-        int validationResult = DBManager.validar(user, pass);
 
-        if (validationResult == -1) {
+        // Validar el nombre de usuario y la contraseña con los caracteres permitidos
+        int resultadoValidacion = UsersPasswordsData.validar(usuario, contrasena);
+
+        if (resultadoValidacion == -1) {
             showError("Error de validación", "El nombre de usuario contiene caracteres no válidos.");
-        } else if (validationResult == 0) {
-            showError("Error de validación", "La contraseña contiene caracteres no válidos.");
+            return;
+        } else if (resultadoValidacion == 0) {
+            showError("Error de validación", "El usuario o contraseña no tiene un formato valido.");
+            return;
         } else {
             // Codificar la contraseña antes de la autenticación
             try {
-                pass = dbManager.encode(pass);  // Codificar la contraseña
+                contrasena = dbManager.encode(contrasena);  // Codificar la contraseña
             } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
                 showError("Error de codificación", "Error al codificar la contraseña.");
                 return;
             }
 
             // Autenticar al usuario
-            int authResult = dbManager.authenticateUser(user, pass);
+            int resultadoAutenticacion = dbManager.authenticateUser(usuario, contrasena);
 
-            switch (authResult) {
+            switch (resultadoAutenticacion) {
                 case -1:
                     showError("Error de autenticación", "El usuario no existe.");
                     break;
@@ -82,6 +85,7 @@ public class loginController {
             }
         }
     }
+
 
     private void showError(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

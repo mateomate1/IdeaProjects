@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class altaController {
@@ -27,7 +26,7 @@ public class altaController {
     @FXML CheckBox checkPass;
     @FXML CheckBox checkConfirm;
 
-    private DBManager dbManager = new DBManager(); // Instancia de DBManager
+    private DBManager data = new DBManager(); // Instancia de DBManager
 
     @FXML
     private void initialize() {
@@ -50,61 +49,75 @@ public class altaController {
 
     @FXML
     public void btnConfirmar(ActionEvent actionEvent) {
-        String user = userName.getText();
-        String pass = null;
+        // Obtener el nombre de usuario y la contraseña desde los campos de texto
+        String usuario = userName.getText();
+        String contrasena = null;
 
+        // Verificar si las contraseñas coinciden
         if (!dotPass.getText().equals(dotConfirm.getText())) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText("Las contraseñas no coinciden");
             alert.setContentText("Por favor, verifica que ambas contraseñas sean iguales.");
             alert.showAndWait();
+            return;
         }
 
-        pass = visiblePass.getText();
+        // Obtener la contraseña visible (la que el usuario ve)
+        contrasena = visiblePass.getText();
+        // Limpiar los campos de texto
         userName.clear();
         visiblePass.clear();
         visibleConfirm.clear();
 
         // Validación del nombre de usuario y la contraseña
-        int validation = DBManager.validar(user, pass);
-        if (validation == -1) {
+        int validacion = UsersPasswordsData.validar(usuario, contrasena);
+        if (validacion == -1) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
-            alert.setHeaderText("El nombre de usuario o la contraseña contienen caracteres no validos.");
-            alert.setContentText("Los caracteres válidos son: " + DBManager.USABLE_CHARS.toString());
+            alert.setHeaderText("El nombre de usuario o la contraseña contienen caracteres no válidos.");
+            alert.setContentText("Los caracteres válidos son: " + UsersPasswordsData.USABLE_CHARS);
             alert.showAndWait();
             return;
-        } else if (validation == 0) {
+        } else if (validacion == 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText("El nombre de usuario o la contraseña no cumplen con las especificaciones necesarias.");
-            alert.setContentText("El usuario y contraseña deben tener entre "+DBManager.MAX_CHARS+"-"+DBManager.MIN_CHARS+" y debe contener al menos una mayuscula y un numero.");
+            alert.setContentText("El usuario y contraseña deben tener entre " + UsersPasswordsData.MAX_CHARS + "-" + UsersPasswordsData.MIN_CHARS + " caracteres y deben contener al menos una mayúscula y un número.");
             alert.showAndWait();
             return;
         }
 
-        // Verificamos si el usuario ya existe
-        int totalUsuarios = dbManager.contarUsuarios();
-        if (totalUsuarios == DBManager.MAX_USERS) {
+        // Crear una instancia de UsersPasswordsData para gestionar los usuarios
+        UsersPasswordsData data = new UsersPasswordsData();
+
+        // Verificar si el límite de usuarios ha sido alcanzado
+        if (data.getUsers().size() >= UsersPasswordsData.MAX_USERS) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Advertencia");
             alert.setHeaderText("Límite de usuarios alcanzado");
             alert.setContentText("No se pueden almacenar más usuarios.");
             alert.showAndWait();
+            return;
         }
 
         try {
-            // Cifrado de la contraseña
-            pass = dbManager.encode(pass);
+            // Codificar la contraseña antes de agregarla
+            contrasena = data.encode(contrasena);
 
-            // Intentamos agregar al nuevo usuario
-            boolean userAdded = dbManager.addUser(user, pass);
-            if (!userAdded) {
+            // Intentar agregar el nuevo usuario
+            int resultado = data.addUser(usuario, contrasena);
+            if (resultado == 1) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Advertencia");
-                alert.setHeaderText("Error al agregar el usuario");
-                alert.setContentText("No se pudo agregar el usuario.");
+                alert.setHeaderText("No se pudo agregar el usuario.");
+                alert.setContentText("Límite de usuarios alcanzado.");
+                alert.showAndWait();
+            } else if (resultado == -1) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Advertencia");
+                alert.setHeaderText("No se pudo agregar el usuario.");
+                alert.setContentText("Ese usuario ya existe.");
                 alert.showAndWait();
             } else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -120,10 +133,8 @@ public class altaController {
             alert.setContentText("No se ha podido cifrar la contraseña, no se guardará el usuario...");
             alert.showAndWait();
         }
-        userName.clear();
-        visiblePass.clear();
-        visibleConfirm.clear();
     }
+
 
     @FXML
     public void volver(ActionEvent event) {
