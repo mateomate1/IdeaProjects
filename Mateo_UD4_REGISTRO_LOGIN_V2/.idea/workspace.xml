@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a7ee916e-7325-4c45-9d5a-ba6a59a56d78" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Mateo_UD4_REGISTRO_LOGIN_V2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../Mateo_UD4_REGISTRO_LOGIN_V2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Mateo_UD4_REGISTRO_LOGIN_V2.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UsersData.dat" beforeDir="false" afterPath="$PROJECT_DIR$/UsersData.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/Mateo_UD4_REGISTRO_LOGIN_V2_FINAL_BBDD_jar/Mateo_UD4_REGISTRO_LOGIN_V2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/DBManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/DBManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/altaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/altaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/loginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/mateo_ud4_registro_login_v2/loginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Mateo_UD4_REGISTRO_LOGIN_V2_FINAL.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Mateo_UD4_REGISTRO_LOGIN_V2_FINAL.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Mateo_UD4_REGISTRO_LOGIN_V2_FINAL_BBDD.zip" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
