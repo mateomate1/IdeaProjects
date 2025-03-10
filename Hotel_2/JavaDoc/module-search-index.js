@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"app.hotel_2"}];updateSearchResults();

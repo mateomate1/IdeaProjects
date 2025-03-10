@@ -1,0 +1,1 @@
+moduleSearchIndex = [{"l":"com.dam.di.reservashotel"}];updateSearchResults();

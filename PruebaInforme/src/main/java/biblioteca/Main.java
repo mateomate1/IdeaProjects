@@ -56,7 +56,7 @@ public class Main {
             parametetros.put(JRParameter.SORT_FIELDS, sortList);
 
             JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            // JasperExportManager.exportReportToPdf(print,fichero);
+            //JasperExportManager.exportReportToPdf(print,fichero);
             JasperViewer visor = new JasperViewer(print, false);
             visor.setVisible(true);
         }

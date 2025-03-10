@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.embed.swing.SwingNode?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dam.di.reservashotel.HelloController">
+
+    <top>
+        <Label text="Reservas Hotel" style="-fx-font-size: 18px; -fx-font-weight: bold;" BorderPane.alignment="CENTER"/>
+    </top>
+    <center>
+
+        <VBox spacing="15" alignment="CENTER">
+            <Button fx:id="btnVisualizarInforme" text="Visualizar Informe" onAction="#mostrarReporte"
+                    style="-fx-padding: 10; -fx-font-size: 14px;"/>
+            <Button fx:id="btnGuardarPDF" text="Guardar Informe en PDF" onAction="#exportarReporte"
+                    style="-fx-padding: 10; -fx-font-size: 14px;"/>
+            <SwingNode fx:id="helpButtonNode" layoutX="250.0" layoutY="200.0"/>
+        </VBox>
+    </center>
+    <bottom>
+        <Label text="Desarrollado por MGR" style="-fx-font-size: 10px;" BorderPane.alignment="CENTER" />
+    </bottom>
+</BorderPane>

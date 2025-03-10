@@ -1,70 +1,23 @@
 package app.hotel_2;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
-
+import java.net.URL;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.ResourceBundle;
+import java.util.Set;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.swing.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.embed.swing.SwingFXUtils;
-=======
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.embed.swing.SwingNode;
->>>>>>> Stashed changes
-=======
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.embed.swing.SwingNode;
->>>>>>> Stashed changes
-=======
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.embed.swing.SwingNode;
->>>>>>> Stashed changes
-=======
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.embed.swing.SwingNode;
->>>>>>> Stashed changes
-=======
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
-import java.sql.Connection;
-
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.embed.swing.SwingNode;
->>>>>>> Stashed changes
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,201 +29,93 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.Pane;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-import javafx.stage.Stage;
-=======
 import javafx.util.Duration;
->>>>>>> Stashed changes
-=======
-import javafx.util.Duration;
->>>>>>> Stashed changes
-=======
-import javafx.util.Duration;
->>>>>>> Stashed changes
-=======
-import javafx.util.Duration;
->>>>>>> Stashed changes
-=======
-import javafx.util.Duration;
->>>>>>> Stashed changes
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.swing.JRViewer;
 import net.sf.jasperreports.view.JasperViewer;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
 import win.zqxu.jrviewer.JRViewerFX;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-import javafx.scene.layout.Pane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-
-
-=======
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
->>>>>>> Stashed changes
-=======
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
->>>>>>> Stashed changes
-=======
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
->>>>>>> Stashed changes
-=======
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
->>>>>>> Stashed changes
-=======
-import javax.help.HelpBroker;
-import javax.help.HelpSet;
->>>>>>> Stashed changes
-import javax.swing.*;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.ResourceBundle;
-import java.util.Set;
-
+/**
+ * Controlador principal de la aplicacion del hotel.
+ * Maneja la generacion de reportes, la visualizacion de informes y la configuracion de ayuda.
+ * @author Mateo
+ */
 public class HelloController implements Initializable {
 
     Set<Habitacion> hotel = new HashSet<>();
 
     JasperPrint print = new JasperPrint();
+
     JasperViewer visor = new JasperViewer(print);
 
     @FXML
     public Label label;
     @FXML
     public Pane panel;
-
     @FXML
     private SwingNode helpButtonNode;
-
     private JButton helpButton;
 
+    /**
+     * Genera un informe de habitaciones y lo muestra en JasperViewer.
+     * @param actionEvent Evento de la interfaz grafica.
+     */
     @FXML
     public void btnGenerar(ActionEvent actionEvent) {
         try {
             File fichero = new File("./informes/Habitaciones.jasper");
             JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
             JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(hotel, false);
-
-            HashMap<String, Object> parametetros = new HashMap<>();
-
-            parametetros.put("RUTA_IMAGEN", "./informes/hotel.png");
-
-            print = JasperFillManager.fillReport(informe, parametetros, coleccion);
+            HashMap<String, Object> parametros = new HashMap<>();
+            parametros.put("RUTA_IMAGEN", "./informes/hotel.png");
+            print = JasperFillManager.fillReport(informe, parametros, coleccion);
             visor = new JasperViewer(print, false);
             visor.setVisible(true);
         } catch (JRException e) {
             e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error generando el reporte");
-            alert.setContentText("");
-            alert.showAndWait();
+            mostrarAlertaError("Error generando el reporte");
         }
     }
 
+    /**
+     * Exporta el informe generado a un archivo PDF.
+     * @param actionEvent Evento de la interfaz grafica.
+     */
     @FXML
     public void btnExportar(ActionEvent actionEvent) {
         copiarArchivo("informes/informeHotel.pdf", "informeHotel.pdf");
-        /*
-        try {
-            String pathname = "./informes/informesHotel.pdf";
-            File reportFile = new File(pathname);
-            OutputStream output = new FileOutputStream(reportFile);
-            JasperExportManager.exportReportToPdfStream(print, output);
-            JasperExportManager.exportReportToPdfFile(print, pathname);
-            visor.setVisible(true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error exportando el reporte");
-            alert.setContentText("Hubicacion del archivo no encontrada no encontrado");
-            alert.showAndWait();
-        } catch (JRException e) {
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Error exportando el reporte");
-            alert.setContentText("Error con el JasperReport");
-            alert.showAndWait();
-        }*/
     }
 
+    /**
+     * Muestra el informe en la interfaz usando JRViewerFX.
+     * @param actionEvent Evento de la interfaz grafica.
+     */
     @FXML
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    public void btnMostrar(ActionEvent actionEvent){
-        //JRViewerFX visor = new JRViewerFX(print);
-        //panel.getChildren().add(visor);
-        mostrarPDFEnPanel(panel,"informes/informesHotel.pdf");
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     public void btnMostrar(ActionEvent actionEvent) {
-        JRViewerFX visor = new JRViewerFX(print);
-        panel.getChildren().add(visor);
->>>>>>> Stashed changes
+        JRViewerFX visorFX = new JRViewerFX(print);
+        panel.getChildren().add(visorFX);
     }
 
+    /**
+     * Inicializa la aplicacion cargando algunas habitaciones de prueba y configurando la ayuda.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Reserva r1 = new Reserva(2, "Juan Perez", 3);
-        Reserva r2 = new Reserva(1, "Maria Gomez", 2);
-        Reserva r3 = new Reserva(3, "Carlos Ruiz", 4);
-        Reserva r4 = new Reserva(2, "Ana Lopez", 1);
-        Reserva r5 = new Reserva(4, "Luis Fernandez", 5);
-
-        Habitacion h1 = new Habitacion(101, 50.0, r1);
-        Habitacion h2 = new Habitacion(102, 60.0, r2);
-        Habitacion h3 = new Habitacion(103, 55.0, r3);
-        Habitacion h4 = new Habitacion(104, 70.0, r4);
-        Habitacion h5 = new Habitacion(105, 65.0, r5);
-
-        hotel.add(h1);
-        hotel.add(h2);
-        hotel.add(h3);
-        hotel.add(h4);
-        hotel.add(h5);
-
+        hotel.add(new Habitacion(101, 50.0, new Reserva(2, "Juan Perez", 3)));
+        hotel.add(new Habitacion(102, 60.0, new Reserva(1, "Maria Gomez", 2)));
+        hotel.add(new Habitacion(103, 55.0, new Reserva(3, "Carlos Ruiz", 4)));
+        hotel.add(new Habitacion(104, 70.0, new Reserva(2, "Ana Lopez", 1)));
+        hotel.add(new Habitacion(105, 65.0, new Reserva(4, "Luis Fernandez", 5)));
         initJavaHelpConfig();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
-=======
-=======
     }
 
+    /**
+     * Configura la ayuda de JavaHelp.
+     */
     private void initJavaHelpConfig() {
         try {
-            // Cargar el archivo de configuración de JavaHelp
             File helpFile = new File("help/help_set.hs");
             URL helpURL = helpFile.toURI().toURL();
             HelpSet helpSet = new HelpSet(getClass().getClassLoader(), helpURL);
@@ -280,337 +125,40 @@ public class HelloController implements Initializable {
                 helpButton = new JButton("Ayuda");
                 helpButton.setBounds(0, 0, 150, 50);
                 helpButtonNode.setContent(helpButton);
-
-                // Asociar el botón con la ayuda de JavaHelp
                 helpBroker.enableHelpOnButton(helpButton, "aplicacion", helpSet);
-
-                // Evita que el botón se vea en negro
                 Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2),
                         e -> helpButtonNode.getContent().repaint()));
                 timeline.playFromStart();
             });
-
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error al cargar la ayuda de JavaHelp", e);
         }
     }
 
+    /**
+     * Copia un archivo de origen a destino.
+     * @param origen Ruta del archivo de origen.
+     * @param destino Ruta del archivo de destino.
+     */
     public static void copiarArchivo(String origen, String destino) {
-        Path sourcePath = Path.of(origen);
-        Path destinationPath = Path.of(destino);
-
         try {
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(Path.of(origen), Path.of(destino), StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Archivo copiado con exito.");
         } catch (IOException e) {
             System.err.println("Error al copiar el archivo: " + e.getMessage());
         }
-    /*
-    * File fichero = new File("./informes/Libros.jasper");
-            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
-            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
-
-            HashMap<String, Object> parametetros = new HashMap<>();
-
-            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
-
-            JRDesignSortField sortField = new JRDesignSortField();
-            sortField.setName("ISBN");
-            sortField.setOrder(SortOrderEnum.ASCENDING);
-            sortField.setType(SortFieldTypeEnum.FIELD);
-            List<JRSortField> sortList = new ArrayList<>();
-            sortList.add(sortField);
-            parametetros.put(JRParameter.SORT_FIELDS, sortList);
-
-            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            // JasperExportManager.exportReportToPdf(print,fichero);
-            JasperViewer visor = new JasperViewer(print, false);
-            visor.setVisible(true);
-    * */
->>>>>>> Stashed changes
     }
 
-    private void initJavaHelpConfig() {
-        try {
-            // Cargar el archivo de configuración de JavaHelp
-            File helpFile = new File("help/help_set.hs");
-            URL helpURL = helpFile.toURI().toURL();
-            HelpSet helpSet = new HelpSet(getClass().getClassLoader(), helpURL);
-            HelpBroker helpBroker = helpSet.createHelpBroker();
-
-            SwingUtilities.invokeLater(() -> {
-                helpButton = new JButton("Ayuda");
-                helpButton.setBounds(0, 0, 150, 50);
-                helpButtonNode.setContent(helpButton);
-
-                // Asociar el botón con la ayuda de JavaHelp
-                helpBroker.enableHelpOnButton(helpButton, "aplicacion", helpSet);
-
-                // Evita que el botón se vea en negro
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2),
-                        e -> helpButtonNode.getContent().repaint()));
-                timeline.playFromStart();
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al cargar la ayuda de JavaHelp", e);
-        }
+    /**
+     * Muestra una alerta de error en la interfaz.
+     * @param mensaje Mensaje de error a mostrar.
+     */
+    private void mostrarAlertaError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(mensaje);
+        alert.setContentText("");
+        alert.showAndWait();
     }
-
-    public static void copiarArchivo(String origen, String destino) {
-        Path sourcePath = Path.of(origen);
-        Path destinationPath = Path.of(destino);
-
-        try {
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Archivo copiado con exito.");
-        } catch (IOException e) {
-            System.err.println("Error al copiar el archivo: " + e.getMessage());
-        }
-    /*
-    * File fichero = new File("./informes/Libros.jasper");
-            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
-            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
-
-            HashMap<String, Object> parametetros = new HashMap<>();
-
-            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
-
-            JRDesignSortField sortField = new JRDesignSortField();
-            sortField.setName("ISBN");
-            sortField.setOrder(SortOrderEnum.ASCENDING);
-            sortField.setType(SortFieldTypeEnum.FIELD);
-            List<JRSortField> sortList = new ArrayList<>();
-            sortList.add(sortField);
-            parametetros.put(JRParameter.SORT_FIELDS, sortList);
-
-            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            // JasperExportManager.exportReportToPdf(print,fichero);
-            JasperViewer visor = new JasperViewer(print, false);
-            visor.setVisible(true);
-    * */
->>>>>>> Stashed changes
-    }
-
-    private void initJavaHelpConfig() {
-        try {
-            // Cargar el archivo de configuración de JavaHelp
-            File helpFile = new File("help/help_set.hs");
-            URL helpURL = helpFile.toURI().toURL();
-            HelpSet helpSet = new HelpSet(getClass().getClassLoader(), helpURL);
-            HelpBroker helpBroker = helpSet.createHelpBroker();
-
-            SwingUtilities.invokeLater(() -> {
-                helpButton = new JButton("Ayuda");
-                helpButton.setBounds(0, 0, 150, 50);
-                helpButtonNode.setContent(helpButton);
-
-                // Asociar el botón con la ayuda de JavaHelp
-                helpBroker.enableHelpOnButton(helpButton, "aplicacion", helpSet);
-
-                // Evita que el botón se vea en negro
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2),
-                        e -> helpButtonNode.getContent().repaint()));
-                timeline.playFromStart();
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al cargar la ayuda de JavaHelp", e);
-        }
-    }
-
-    public static void copiarArchivo(String origen, String destino) {
-        Path sourcePath = Path.of(origen);
-        Path destinationPath = Path.of(destino);
-
-        try {
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Archivo copiado con exito.");
-        } catch (IOException e) {
-            System.err.println("Error al copiar el archivo: " + e.getMessage());
-        }
-    /*
-    * File fichero = new File("./informes/Libros.jasper");
-            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
-            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
-
-            HashMap<String, Object> parametetros = new HashMap<>();
-
-            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
-
-            JRDesignSortField sortField = new JRDesignSortField();
-            sortField.setName("ISBN");
-            sortField.setOrder(SortOrderEnum.ASCENDING);
-            sortField.setType(SortFieldTypeEnum.FIELD);
-            List<JRSortField> sortList = new ArrayList<>();
-            sortList.add(sortField);
-            parametetros.put(JRParameter.SORT_FIELDS, sortList);
-
-            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            // JasperExportManager.exportReportToPdf(print,fichero);
-            JasperViewer visor = new JasperViewer(print, false);
-            visor.setVisible(true);
-    * */
->>>>>>> Stashed changes
-    }
-
-    private void initJavaHelpConfig() {
-        try {
-            // Cargar el archivo de configuración de JavaHelp
-            File helpFile = new File("help/help_set.hs");
-            URL helpURL = helpFile.toURI().toURL();
-            HelpSet helpSet = new HelpSet(getClass().getClassLoader(), helpURL);
-            HelpBroker helpBroker = helpSet.createHelpBroker();
-
-            SwingUtilities.invokeLater(() -> {
-                helpButton = new JButton("Ayuda");
-                helpButton.setBounds(0, 0, 150, 50);
-                helpButtonNode.setContent(helpButton);
-
-                // Asociar el botón con la ayuda de JavaHelp
-                helpBroker.enableHelpOnButton(helpButton, "aplicacion", helpSet);
-
-                // Evita que el botón se vea en negro
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2),
-                        e -> helpButtonNode.getContent().repaint()));
-                timeline.playFromStart();
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al cargar la ayuda de JavaHelp", e);
-        }
-    }
-
-    public static void copiarArchivo(String origen, String destino) {
-        Path sourcePath = Path.of(origen);
-        Path destinationPath = Path.of(destino);
-
-        try {
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Archivo copiado con exito.");
-        } catch (IOException e) {
-            System.err.println("Error al copiar el archivo: " + e.getMessage());
-        }
-    /*
-    * File fichero = new File("./informes/Libros.jasper");
-            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
-            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
-
-            HashMap<String, Object> parametetros = new HashMap<>();
-
-            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
-
-            JRDesignSortField sortField = new JRDesignSortField();
-            sortField.setName("ISBN");
-            sortField.setOrder(SortOrderEnum.ASCENDING);
-            sortField.setType(SortFieldTypeEnum.FIELD);
-            List<JRSortField> sortList = new ArrayList<>();
-            sortList.add(sortField);
-            parametetros.put(JRParameter.SORT_FIELDS, sortList);
-
-            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            // JasperExportManager.exportReportToPdf(print,fichero);
-            JasperViewer visor = new JasperViewer(print, false);
-            visor.setVisible(true);
-    * */
->>>>>>> Stashed changes
-    }
-
-    private void initJavaHelpConfig() {
-        try {
-            // Cargar el archivo de configuración de JavaHelp
-            File helpFile = new File("help/help_set.hs");
-            URL helpURL = helpFile.toURI().toURL();
-            HelpSet helpSet = new HelpSet(getClass().getClassLoader(), helpURL);
-            HelpBroker helpBroker = helpSet.createHelpBroker();
-
-            SwingUtilities.invokeLater(() -> {
-                helpButton = new JButton("Ayuda");
-                helpButton.setBounds(0, 0, 150, 50);
-                helpButtonNode.setContent(helpButton);
-
-                // Asociar el botón con la ayuda de JavaHelp
-                helpBroker.enableHelpOnButton(helpButton, "aplicacion", helpSet);
-
-                // Evita que el botón se vea en negro
-                Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.2),
-                        e -> helpButtonNode.getContent().repaint()));
-                timeline.playFromStart();
-            });
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error al cargar la ayuda de JavaHelp", e);
-        }
-    }
-
-    public static void copiarArchivo(String origen, String destino) {
-        Path sourcePath = Path.of(origen);
-        Path destinationPath = Path.of(destino);
-
-        try {
-            Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Archivo copiado con exito.");
-        } catch (IOException e) {
-            System.err.println("Error al copiar el archivo: " + e.getMessage());
-        }
-    /*
-    * File fichero = new File("./informes/Libros.jasper");
-            JasperReport informe = (JasperReport) JRLoader.loadObject(fichero);
-            JRBeanCollectionDataSource coleccion = new JRBeanCollectionDataSource(libros);
-
-            HashMap<String, Object> parametetros = new HashMap<>();
-
-            parametetros.put("RUTA_IMAGEN", "./informes/libro.png");
-
-            JRDesignSortField sortField = new JRDesignSortField();
-            sortField.setName("ISBN");
-            sortField.setOrder(SortOrderEnum.ASCENDING);
-            sortField.setType(SortFieldTypeEnum.FIELD);
-            List<JRSortField> sortList = new ArrayList<>();
-            sortList.add(sortField);
-            parametetros.put(JRParameter.SORT_FIELDS, sortList);
-
-            JasperPrint print = JasperFillManager.fillReport(informe,parametetros,coleccion);
-            // JasperExportManager.exportReportToPdf(print,fichero);
-            JasperViewer visor = new JasperViewer(print, false);
-            visor.setVisible(true);
-    * */
-    }
-
-    public static void copiarArchivo(String origen, String destino) throws IOException {
-        File archivoOrigen = new File(origen);
-        File archivoDestino = new File(destino);
-
-        try (FileInputStream fis = new FileInputStream(archivoOrigen);
-             FileOutputStream fos = new FileOutputStream(archivoDestino)) {
-
-            byte[] buffer = new byte[1024];
-            int bytesLeidos;
-
-            while ((bytesLeidos = fis.read(buffer)) != -1) {
-                fos.write(buffer, 0, bytesLeidos);
-            }
-        }
-    }
-
-    public void mostrarPDFEnPanel(Pane panel, String rutaPDF) {
-        WebView webView = new WebView();
-        // Obtener el motor de WebView
-        WebEngine webEngine = webView.getEngine();
-
-        // Ruta al archivo PDF (asegúrate de que la ruta sea correcta)
-        String pdfUrl = "file:///" + new File(rutaPDF).getAbsolutePath().replace("\\", "/");
-
-        // Cargar el archivo PDF en el WebView (los navegadores generalmente lo permiten)
-        webEngine.load(pdfUrl);
-
-        // Añadir el WebView al panel para mostrar el PDF
-        panel.getChildren().add(webView);
-    }
-
 }

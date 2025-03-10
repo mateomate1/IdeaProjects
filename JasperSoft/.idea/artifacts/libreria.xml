@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="libreria">
+    <output-path>$PROJECT_DIR$/out/artifacts/libreria</output-path>
+    <root id="archive" name="libreria.jar">
+      <element id="directory" name="app">
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/app/Autor.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/app/Libro.class" />
+      </element>
+    </root>
+  </artifact>
+</component>
