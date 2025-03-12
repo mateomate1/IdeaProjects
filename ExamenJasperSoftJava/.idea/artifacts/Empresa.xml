@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Empresa">
+    <output-path>$PROJECT_DIR$/out/artifacts/Empresa</output-path>
+    <root id="archive" name="Empresa.jar">
+      <element id="directory" name="app">
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/app/Departamento.class" />
+        <element id="file-copy" path="$PROJECT_DIR$/target/classes/app/Empleado.class" />
+      </element>
+    </root>
+  </artifact>
+</component>
